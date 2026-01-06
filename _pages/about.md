@@ -30,9 +30,5 @@ I'm currently interested in computer vision, computational photography, and vide
 # 📖 Educations
 - *2023.09 - 2027.06 (expected)*, Undergraduate, Computer Science, Peking University, Beijing. 
 
-# 💬 Invited Talks
-- *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
-
 # 💻 Internships
 - *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
