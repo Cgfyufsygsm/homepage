@@ -31,4 +31,3 @@ I'm currently interested in computer vision, computational photography, and vide
 - *2023.09 - 2027.06 (expected)*, Undergraduate, Computer Science, Peking University, Beijing. 
 
 # 💻 Internships
-- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
