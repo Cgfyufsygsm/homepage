@@ -21,8 +21,8 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 
 # Site Author
 author:
-  name             : "Taoyu Yang"
-  avatar           : "images/android-chrome-512x512.png"
+  name             : "Taoyu Yang (杨涛瑜)"
+  avatar           : "images/profile.jpg"
   bio              : ""
   location         : "Beijing, China"
   employer         :
