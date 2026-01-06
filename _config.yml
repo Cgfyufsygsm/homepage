@@ -6,8 +6,8 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Taoyu Yang"
-description              : 
+title                    : "Taoyu Yang (杨涛瑜)"
+description              : "PKU CS Undergraduate"
 repository               : "Cgfyufsygsm/homepage"
 google_scholar_stats_use_cdn : true
 
@@ -23,7 +23,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Taoyu Yang"
   avatar           : "images/android-chrome-512x512.png"
-  bio              : "PKU CS Undergraduate"
+  bio              : ""
   location         : "Beijing, China"
   employer         :
   pubmed           : 
