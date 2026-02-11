@@ -1,13 +1,10 @@
 :root {
   --bg: #f7f7f7;
-  --surface: rgba(255, 255, 255, 0.46);
-  --surface-strong: rgba(255, 255, 255, 0.82);
   --text: #0f1722;
   --text-muted: #445064;
   --border: rgba(255, 255, 255, 0.6);
   --accent: #4e8cff;
   --accent-strong: #2d6cf2;
-  --shadow: 0 10px 26px rgba(20, 34, 53, 0.12);
   --topbar-height: 70px;
   --panel-radius: 14px;
   --theme-duration: 0.5s;
@@ -21,14 +18,11 @@
 
 body.dark {
   --bg: #121212;
-  --surface: rgba(17, 24, 37, 0.5);
-  --surface-strong: rgba(21, 30, 45, 0.8);
   --text: #edf3ff;
   --text-muted: #a7b8d6;
   --border: rgba(150, 184, 244, 0.26);
   --accent: #8eb7ff;
   --accent-strong: #c0d7ff;
-  --shadow: 0 16px 44px rgba(0, 0, 0, 0.42);
   --sidebar-surface: rgba(19, 27, 40, 0.18);
   --sidebar-border: color-mix(in srgb, var(--border) 42%, transparent);
 }
@@ -105,52 +99,52 @@ body.dark::after {
   padding: 0 1.25rem;
 }
 
-/* liquid-glass-react 需要的 Tailwind CSS 等效样式 */
-.relative {
+/* Scope liquid-glass helper classes to topbar to avoid global style pollution. */
+.topbar-liquid-wrap .relative {
   position: relative;
 }
 
-.transition-all {
+.topbar-liquid-wrap .transition-all {
   transition-property: all;
 }
 
-.duration-150 {
+.topbar-liquid-wrap .duration-150 {
   transition-duration: var(--theme-duration);
 }
 
-.ease-in-out {
+.topbar-liquid-wrap .ease-in-out {
   transition-timing-function: var(--theme-ease);
 }
 
-.pointer-events-none {
+.topbar-liquid-wrap .pointer-events-none {
   pointer-events: none;
 }
 
-.bg-black {
+.topbar-liquid-wrap .bg-black {
   background-color: #000;
 }
 
-.opacity-0 {
+.topbar-liquid-wrap .opacity-0 {
   opacity: 0;
 }
 
-.opacity-20 {
+.topbar-liquid-wrap .opacity-20 {
   opacity: 0.2;
 }
 
-.opacity-100 {
+.topbar-liquid-wrap .opacity-100 {
   opacity: 1;
 }
 
-.mix-blend-overlay {
+.topbar-liquid-wrap .mix-blend-overlay {
   mix-blend-mode: overlay;
 }
 
-.text-white {
+.topbar-liquid-wrap .text-white {
   color: #fff;
 }
 
-.cursor-pointer {
+.topbar-liquid-wrap .cursor-pointer {
   cursor: pointer;
 }
 
