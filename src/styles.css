@@ -275,8 +275,11 @@ body.dark .main-nav a.active {
 }
 
 .sidebar {
+  --avatar-shift-x: 0px;
+  --avatar-shift-y: 0px;
+  --avatar-scale: 1;
   position: sticky;
-  top: calc(var(--topbar-height) + 18px);
+  top: calc(var(--topbar-height) + 18px + 1.05rem);
   align-self: start;
   padding: 1rem;
   margin: 0;
@@ -307,7 +310,8 @@ body.dark .sidebar {
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid var(--border);
-  transition: filter var(--theme-transition);
+  transform: translate(var(--avatar-shift-x), var(--avatar-shift-y)) scale(var(--avatar-scale));
+  transition: filter var(--theme-transition), transform 0.22s ease-out;
 }
 
 body.dark .avatar-image {
@@ -344,10 +348,17 @@ body.dark .avatar-image {
 .sidebar-links a {
   color: var(--accent-strong);
   text-decoration: none;
+  text-underline-offset: 0.26em;
+  text-decoration-thickness: 1.5px;
 }
 
 .sidebar-links a:hover {
   text-decoration: underline;
+  text-decoration-color: #111111;
+}
+
+body.dark .sidebar-links a:hover {
+  text-decoration-color: var(--accent-strong);
 }
 
 .contact-item a,
@@ -362,6 +373,16 @@ body.dark .avatar-image {
 
 .contact-item a:hover {
   color: var(--accent-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(24, 38, 62, 0.14);
+}
+
+.contact-item a {
+  border-radius: 8px;
+  transition:
+    color var(--theme-transition),
+    transform var(--theme-transition),
+    box-shadow var(--theme-transition);
 }
 
 .contact-icon {
@@ -382,6 +403,10 @@ body.dark .avatar-image {
 
 body.dark .contact-icon {
   color: var(--accent-strong);
+}
+
+body.dark .contact-item a:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
 }
 
 .main-content {

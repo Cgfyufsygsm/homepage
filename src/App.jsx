@@ -63,6 +63,7 @@ function App() {
   const [activeId, setActiveId] = useState('about');
 
   const topbarMouseRef = useRef(null);
+  const sidebarMotionRef = useRef(null);
 
   const visibleSections = useMemo(() => {
     if (!data) return [];
@@ -168,6 +169,32 @@ function App() {
     window.history.replaceState(null, '', `#${id}`);
   };
 
+  const handleSidebarMouseMove = (event) => {
+    const node = sidebarMotionRef.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const nx = (event.clientX - cx) / (rect.width / 2);
+    const ny = (event.clientY - cy) / (rect.height / 2);
+    const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+    const shiftX = 0;
+    const shiftY = 0;
+    const dist = Math.min(1, Math.hypot(nx, ny));
+    const scale = 1 + dist * 0.01;
+    node.style.setProperty('--avatar-shift-x', `${shiftX.toFixed(2)}px`);
+    node.style.setProperty('--avatar-shift-y', `${shiftY.toFixed(2)}px`);
+    node.style.setProperty('--avatar-scale', `${scale.toFixed(3)}`);
+  };
+
+  const handleSidebarMouseLeave = () => {
+    const node = sidebarMotionRef.current;
+    if (!node) return;
+    node.style.setProperty('--avatar-shift-x', '0px');
+    node.style.setProperty('--avatar-shift-y', '0px');
+    node.style.setProperty('--avatar-scale', '1');
+  };
+
   if (error) {
     return <main className="container"><p>Failed to load content: {error}</p></main>;
   }
@@ -241,7 +268,12 @@ function App() {
       </div>
 
       <main className="container page-layout">
-        <aside className="sidebar reveal">
+        <aside
+          className="sidebar reveal"
+          ref={sidebarMotionRef}
+          onMouseMove={handleSidebarMouseMove}
+          onMouseLeave={handleSidebarMouseLeave}
+        >
           <img
             id="avatar-image"
             className="avatar-image"
