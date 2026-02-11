@@ -46,6 +46,13 @@ const parseYear = (value) => {
   return m ? Number(m[0]) : 0;
 };
 
+const toPublicUrl = (value) => {
+  if (!value) return '';
+  if (/^(https?:|data:|blob:|mailto:|tel:)/i.test(value)) return value;
+  const clean = String(value).replace(/^\/+/, '');
+  return `${import.meta.env.BASE_URL}${clean}`;
+};
+
 function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
@@ -238,10 +245,10 @@ function App() {
           <img
             id="avatar-image"
             className="avatar-image"
-            src={data.profile?.avatarImage || 'assets/avatar-placeholder.svg'}
+            src={toPublicUrl(data.profile?.avatarImage || 'assets/avatar-placeholder.svg')}
             alt="Avatar"
             onError={(event) => {
-              event.currentTarget.src = 'assets/avatar-placeholder.svg';
+              event.currentTarget.src = toPublicUrl('assets/avatar-placeholder.svg');
             }}
           />
           <h1 id="sidebar-name">{data.profile?.name || 'Your Name'}</h1>
