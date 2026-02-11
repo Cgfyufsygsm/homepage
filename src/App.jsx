@@ -70,7 +70,7 @@ function App() {
 
     const run = async () => {
       try {
-        const res = await fetch('/content.json', { cache: 'no-store' });
+        const res = await fetch(`${import.meta.env.BASE_URL}content.json`, { cache: 'no-store' });
         if (!res.ok) {
           throw new Error('Failed to load content.json');
         }
