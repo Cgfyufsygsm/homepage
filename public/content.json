@@ -1,0 +1,169 @@
+{
+  "profile": {
+    "name": "Taoyu Yang (杨涛瑜)",
+    "title": "Undergraduate Student",
+    "affiliation": "EECS, Peking University",
+    "avatarImage": "assets/profile.jpg"
+  },
+  "sections": {
+    "about": true,
+    "education": true,
+    "internship": false,
+    "service": true,
+    "news": true,
+    "publications": true,
+    "projects": false,
+    "awards": true,
+    "cv": false,
+    "contact": false
+  },
+  "labels": {
+    "about": "About",
+    "education": "Education",
+    "internship": "Internship",
+    "service": "Service",
+    "news": "News",
+    "publications": "Publications",
+    "projects": "Projects",
+    "awards": "Awards",
+    "cv": "CV",
+    "contact": "Contact",
+    "aboutTitle": "About",
+    "educationTitle": "Education",
+    "internshipTitle": "Internship",
+    "serviceTitle": "Service",
+    "newsTitle": "News",
+    "publicationsTitle": "Publications",
+    "projectsTitle": "Projects",
+    "awardsTitle": "Awards",
+    "cvTitle": "CV",
+    "contactTitle": "Contact"
+  },
+  "about": {
+    "bio": "I'm Taoyu Yang, a junior undegraduate student of Peking University. I major in computer science.\n\nI'm currently interested in computer vision, computational photography, and video generation.\nThis page is currently under construction."
+  },
+  "education": [
+    {
+      "title": "Peking University",
+      "meta": "B.S. in Computer Science",
+      "date": "2023.08 - Present",
+      "desc": "School of Electronics Engineering and Computer Science"
+    }
+  ],
+  "internship": [
+    {
+      "title": "PKU Camera Intelligence Lab",
+      "meta": "Research Intern",
+      "date": "2025.08 - Present",
+      "desc": "Working in the AIGC research group, focusing on controllable video generation."
+    },
+    {
+      "title": "PKU-Galbot Joint Lab of Embodied-AI",
+      "meta": "Research Intern",
+      "date": "2025.02 - 2025.07",
+      "desc": "Worked in the Vision-Language-Action model (VLA) research group."
+    }
+  ],
+  "service": [
+    {
+      "title": "Teaching Assistant, Introduction to Computer System (ICS)",
+      "meta": "Peking University",
+      "date": "Fall 2025",
+      "desc": "Led TA sessions and guided students."
+    }
+  ],
+  "news": [
+    {
+      "date": "2026-02",
+      "title": "Sample News Title",
+      "desc": "This is placeholder text for a news item."
+    }
+  ],
+  "publications": [
+    {
+      "title": "Sample Paper Title",
+      "meta": "Author A, Author B. Conference/Journal, 2026",
+      "desc": "One-line summary placeholder.",
+      "tags": [
+        "LLM",
+        "HCI"
+      ],
+      "links": [
+        {
+          "label": "Paper",
+          "url": "#"
+        },
+        {
+          "label": "Code",
+          "url": "#"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Sample Project",
+      "meta": "Ongoing",
+      "desc": "Project description placeholder.",
+      "tags": [
+        "NLP"
+      ],
+      "links": [
+        {
+          "label": "Project Page",
+          "url": "#"
+        }
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "date": "2025",
+      "title": "Chinese Guanggu Scholarship, University-level Scholarship (5%), Peking University"
+    },
+    {
+      "date": "2025",
+      "title": "Merit Student, Peking University"
+    },
+    {
+      "date": "2025",
+      "title": "Third Award, The 23rd Peking University \"Jiukun Cup\" Programming Contest (PKU-CPC)"
+    },
+    {
+      "date": "2023",
+      "title": "Third Award, Freshman Scholarship of Peking University"
+    },
+    {
+      "date": "2022",
+      "title": "Bronze Award, the Winter Camp of National Olympiad in Informatics, CCF"
+    },
+    {
+      "date": "2021",
+      "title": "First Award, National Olympiad in Informatics in Provinces, CCF"
+    }
+  ],
+  "cv": {
+    "note": "Set your CV PDF path in `url`, e.g., assets/cv.pdf",
+    "label": "Download CV",
+    "url": "#"
+  },
+  "blog": {
+    "label": "Blog",
+    "url": "https://blog.imyangty.com"
+  },
+  "contact": [
+    {
+      "label": "Email",
+      "url": "mailto:i@imyangty.com"
+    },
+    {
+      "label": "Github",
+      "url": "https://github.com/Cgfyufsygsm"
+    },
+    {
+      "label": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=InwA8LAAAAAJ"
+    }
+  ],
+  "footer": "© 2026 Taoyu Yang."
+}
