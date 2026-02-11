@@ -63,7 +63,7 @@ body::after {
   background-size: cover;
   background-repeat: no-repeat;
   transition: opacity var(--theme-transition);
-  filter: blur(15px) saturate(130%);
+  filter: blur(10px) saturate(130%);
   transform: scale(1.05);
   transform-origin: center;
 }
