@@ -585,6 +585,18 @@ body.dark .contact-item a:hover {
   padding: 1.1rem 0 2.6rem;
   color: var(--text-muted);
   font-size: 0.9rem;
+  text-align: center;
+  transition: color var(--theme-transition);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer-credit {
+  margin-top: 0.28rem !important;
+  font-size: 0.76rem;
+  opacity: 0.9;
 }
 
 .reveal {

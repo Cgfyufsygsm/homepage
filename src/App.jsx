@@ -504,6 +504,13 @@ function App() {
           )}
         </div>
       </main>
+
+      <footer className="footer">
+        <div className="container">
+          <p>{data.footer || '© 2026 Taoyu Yang.'}</p>
+          {data.backgroundCredit ? <p className="footer-credit">{data.backgroundCredit}</p> : null}
+        </div>
+      </footer>
     </>
   );
 }
