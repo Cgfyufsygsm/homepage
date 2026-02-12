@@ -11,7 +11,7 @@ function Topbar({
   topbarMouseRef,
 }) {
   return (
-    <div className="topbar-liquid-wrap">
+    <div className="topbar-liquid-wrap liquid-scope">
       <LiquidGlass
         className="topbar-liquid-core"
         displacementScale={20}

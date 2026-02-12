@@ -68,7 +68,7 @@
     {
       "title": "Teaching Assistant, Introduction to Computer System (ICS)",
       "meta": "Peking University",
-      "date": "Fall 2025",
+      "date": "2025.09 - 2026.01",
       "desc": "Led TA sessions and guided students."
     }
   ],
@@ -159,6 +159,11 @@
     {
       "label": "Github",
       "url": "https://github.com/Cgfyufsygsm"
+    },
+    {
+      "label": "WeChat",
+      "wechatId": "imyangty",
+      "note": "Please include your identity and purpose."
     },
     {
       "label": "Google Scholar",

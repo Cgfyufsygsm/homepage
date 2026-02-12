@@ -99,52 +99,52 @@ body.dark::after {
   padding: 0 1.25rem;
 }
 
-/* Scope liquid-glass helper classes to topbar to avoid global style pollution. */
-.topbar-liquid-wrap .relative {
+/* Scope liquid-glass helper classes to explicit wrappers to avoid global style pollution. */
+.liquid-scope .relative {
   position: relative;
 }
 
-.topbar-liquid-wrap .transition-all {
+.liquid-scope .transition-all {
   transition-property: all;
 }
 
-.topbar-liquid-wrap .duration-150 {
+.liquid-scope .duration-150 {
   transition-duration: var(--theme-duration);
 }
 
-.topbar-liquid-wrap .ease-in-out {
+.liquid-scope .ease-in-out {
   transition-timing-function: var(--theme-ease);
 }
 
-.topbar-liquid-wrap .pointer-events-none {
+.liquid-scope .pointer-events-none {
   pointer-events: none;
 }
 
-.topbar-liquid-wrap .bg-black {
+.liquid-scope .bg-black {
   background-color: #000;
 }
 
-.topbar-liquid-wrap .opacity-0 {
+.liquid-scope .opacity-0 {
   opacity: 0;
 }
 
-.topbar-liquid-wrap .opacity-20 {
+.liquid-scope .opacity-20 {
   opacity: 0.2;
 }
 
-.topbar-liquid-wrap .opacity-100 {
+.liquid-scope .opacity-100 {
   opacity: 1;
 }
 
-.topbar-liquid-wrap .mix-blend-overlay {
+.liquid-scope .mix-blend-overlay {
   mix-blend-mode: overlay;
 }
 
-.topbar-liquid-wrap .text-white {
+.liquid-scope .text-white {
   color: #fff;
 }
 
-.topbar-liquid-wrap .cursor-pointer {
+.liquid-scope .cursor-pointer {
   cursor: pointer;
 }
 
@@ -342,17 +342,6 @@ body.dark .avatar-image {
 .sidebar-links a {
   color: var(--accent-strong);
   text-decoration: none;
-  text-underline-offset: 0.26em;
-  text-decoration-thickness: 1.5px;
-}
-
-.sidebar-links a:hover {
-  text-decoration: underline;
-  text-decoration-color: #111111;
-}
-
-body.dark .sidebar-links a:hover {
-  text-decoration-color: var(--accent-strong);
 }
 
 .contact-item a,
@@ -365,13 +354,13 @@ body.dark .sidebar-links a:hover {
   text-decoration: none;
 }
 
-.contact-item a:hover {
-  color: var(--accent-strong);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(24, 38, 62, 0.14);
+.contact-item {
+  position: relative;
 }
 
-.contact-item a {
+.contact-item a,
+.wechat-trigger {
+  position: relative;
   border-radius: 8px;
   transition:
     color var(--theme-transition),
@@ -395,12 +384,107 @@ body.dark .sidebar-links a:hover {
   line-height: 1;
 }
 
+.wechat-trigger {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  min-height: 1.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  cursor: pointer;
+}
+
+.contact-item a:hover,
+.wechat-trigger:hover,
+.contact-item a:focus-visible,
+.wechat-trigger:focus-visible {
+  color: var(--accent-strong);
+  transform: translateY(-2px);
+}
+
+.contact-item a::after,
+.wechat-trigger::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: -2px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: #111111;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--theme-transition), background-color var(--theme-transition);
+}
+
+.contact-item a:hover::after,
+.wechat-trigger:hover::after,
+.contact-item a:focus-visible::after,
+.wechat-trigger:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.wechat-popover-layer {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translate(-50%, -6px) scale(0.985);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 220ms cubic-bezier(0.2, 0.75, 0.2, 1),
+    transform 220ms cubic-bezier(0.2, 0.75, 0.2, 1);
+  z-index: 30;
+}
+
+.wechat-popover-layer.open {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  pointer-events: auto;
+}
+
+.contact-tooltip-content {
+  min-width: 174px;
+  padding: 0.45rem 0.58rem;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  background: rgba(255, 255, 255, 0.985);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.11);
+  color: #101828;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  text-align: left;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+.tooltip-line {
+  display: block;
+}
+
+.wechat-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1em;
+}
+
 body.dark .contact-icon {
   color: var(--accent-strong);
 }
 
-body.dark .contact-item a:hover {
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+body.dark .contact-item a::after,
+body.dark .wechat-trigger::after {
+  background: var(--accent-strong);
+}
+
+body.dark .contact-tooltip-content {
+  border-color: color-mix(in srgb, var(--border) 60%, transparent);
+  background: rgba(20, 28, 41, 0.975);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+  color: #edf3ff;
 }
 
 .main-content {

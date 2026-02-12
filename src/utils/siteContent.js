@@ -6,6 +6,7 @@ export const getContactType = (item) => {
 
   if (all.includes('mailto:') || all.includes('email')) return 'email';
   if (all.includes('github')) return 'github';
+  if (all.includes('wechat') || all.includes('weixin') || all.includes('微信')) return 'wechat';
   if (all.includes('scholar')) return 'scholar';
   if (all.includes('linkedin')) return 'linkedin';
   if (all.includes('orcid')) return 'orcid';
@@ -16,6 +17,7 @@ export const getContactIconClass = (type) => {
   const icons = {
     email: 'fa-solid fa-envelope',
     github: 'fa-brands fa-github',
+    wechat: 'fa-brands fa-weixin',
     scholar: 'fa-solid fa-graduation-cap',
     linkedin: 'fa-brands fa-linkedin',
     orcid: 'fa-brands fa-orcid',
