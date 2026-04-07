@@ -1,5 +1,39 @@
 import { parseYear, splitParagraphs } from '../utils/siteContent';
 
+const renderInlineLinks = (text, keyPrefix) => {
+  const value = String(text || '');
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+  let matchIndex = 0;
+
+  while ((match = regex.exec(value)) !== null) {
+    const [fullMatch, label, url] = match;
+    const start = match.index;
+
+    if (start > lastIndex) {
+      parts.push(value.slice(lastIndex, start));
+    }
+
+    parts.push(
+      <a key={`${keyPrefix}-link-${matchIndex}`} href={url} target="_blank" rel="noopener">
+        {label}
+      </a>
+    );
+
+    lastIndex = start + fullMatch.length;
+    matchIndex += 1;
+  }
+
+  if (lastIndex === 0) return value;
+  if (lastIndex < value.length) {
+    parts.push(value.slice(lastIndex));
+  }
+
+  return parts;
+};
+
 const renderEntryLinks = (links, keyPrefix) => {
   if (!links || links.length === 0) return null;
 
@@ -11,6 +45,58 @@ const renderEntryLinks = (links, keyPrefix) => {
         </a>
       ))}
     </div>
+  );
+};
+
+const normalizeAuthor = (author) => {
+  if (typeof author === 'string') {
+    return { name: author, url: '', highlight: false };
+  }
+
+  return {
+    name: String(author?.name || '').trim(),
+    url: String(author?.url || '').trim(),
+    highlight: Boolean(author?.highlight),
+  };
+};
+
+const renderPublicationMeta = (item, keyPrefix) => {
+  const authors = Array.isArray(item.authors)
+    ? item.authors.map(normalizeAuthor).filter((author) => author.name)
+    : [];
+
+  if (authors.length === 0) {
+    return (
+      <>
+        {item.meta ? <p className="meta publication-meta">{item.meta}</p> : null}
+        {item.venue ? <p className="meta publication-venue">{item.venue}</p> : null}
+      </>
+    );
+  }
+
+  return (
+    <>
+      <p className="meta publication-meta">
+        {authors.map((author, idx) => {
+          const content = author.highlight ? <strong>{author.name}</strong> : author.name;
+          const key = `${keyPrefix}-author-${idx}`;
+
+          return (
+            <span key={key}>
+              {idx > 0 ? ', ' : ''}
+              {author.url ? (
+                <a className="publication-author-link" href={author.url} target="_blank" rel="noopener">
+                  {content}
+                </a>
+              ) : (
+                content
+              )}
+            </span>
+          );
+        })}
+      </p>
+      {item.venue ? <p className="meta publication-venue">{item.venue}</p> : null}
+    </>
   );
 };
 
@@ -51,9 +137,13 @@ function CardSection({ id, title, items, emptyText }) {
           items.map((item, idx) => (
             <article key={`${item.title || id}-${idx}`}>
               <h3>{item.title || ''}</h3>
-              <p className="meta">{item.meta || ''}</p>
-              <p className="desc">{item.desc || ''}</p>
-              {(item.tags || []).length > 0 && (
+              {id === 'publications' ? (
+                renderPublicationMeta(item, `${id}-${idx}`)
+              ) : (
+                <p className="meta">{item.meta || ''}</p>
+              )}
+              {id !== 'publications' && item.desc ? <p className="desc">{item.desc}</p> : null}
+              {id !== 'publications' && (item.tags || []).length > 0 && (
                 <div className="tags">
                   {item.tags.map((tag) => <span key={`${item.title || id}-${tag}`}>{tag}</span>)}
                 </div>
@@ -78,7 +168,11 @@ function MainContent({ data }) {
         <section id="about" className="section reveal">
           <h2>{labels.aboutTitle || labels.about || 'About'}</h2>
           <div id="about-content">
-            {aboutParagraphs.map((line, idx) => <p key={idx} className="desc">{line}</p>)}
+            {aboutParagraphs.map((line, idx) => (
+              <p key={idx} className="desc">
+                {renderInlineLinks(line, `about-${idx}`)}
+              </p>
+            ))}
           </div>
         </section>
       )}
@@ -94,8 +188,7 @@ function MainContent({ data }) {
                 {(data.news || []).map((item, idx) => (
                   <li key={`${item.date || 'news'}-${idx}`}>
                     <span className="news-date">{item.date || ''}</span>
-                    <span className="news-title">{item.title || ''}</span>
-                    {item.desc ? <span className="news-desc"> - {item.desc}</span> : null}
+                    <span className="news-content">{item.content || ''}</span>
                   </li>
                 ))}
               </ul>

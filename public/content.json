@@ -11,7 +11,7 @@
     "internship": false,
     "service": true,
     "news": true,
-    "publications": true,
+    "publications": false,
     "projects": false,
     "awards": true,
     "cv": false,
@@ -40,7 +40,7 @@
     "contactTitle": "Contact"
   },
   "about": {
-    "bio": "I'm Taoyu Yang, a junior undegraduate student of Peking University. I major in computer science.\n\nI'm currently interested in computer vision, computational photography, and video generation.\nThis page is currently under construction."
+    "bio": "I'm Taoyu Yang, a junior undergraduate student at Peking University, majoring in Computer Science.\n\nI am currently a research intern with the [Xiaomi MiMo](https://mimo.xiaomi.com/) team, where I work on multimodal large models. My research interests broadly center on multimodal large language models, with a current focus on image and video generation."
   },
   "education": [
     {
@@ -74,28 +74,113 @@
   ],
   "news": [
     {
+      "date": "2026-04",
+      "content": "I joined Xiaomi MiMo team as a research intern."
+    },
+    {
       "date": "2026-02",
-      "title": "Sample News Title",
-      "desc": "This is placeholder text for a news item."
+      "content": "1 paper accepted by CVPR 2026."
     }
   ],
   "publications": [
     {
-      "title": "Sample Paper Title",
-      "meta": "Author A, Author B. Conference/Journal, 2026",
-      "desc": "One-line summary placeholder.",
-      "tags": [
-        "LLM",
-        "HCI"
+      "title": "Lighting-grounded Video Generation with Renderer-based Agent Reasoning",
+      "authors": [
+        {
+          "name": "Ziqi Cai",
+          "url": "https://caiziqi.com/"
+        },
+        {
+          "name": "Taoyu Yang",
+          "highlight": true
+        },
+        {
+          "name": "Zheng Chang"
+        },
+        {
+          "name": "Si Li"
+        },
+        {
+          "name": "Han Jiang"
+        },
+        {
+          "name": "Shuchen Weng†",
+          "url": "https://shuchenweng.github.io/"
+        },
+        {
+          "name": "Boxin Shi†",
+          "url": "https://camera.pku.edu.cn/"
+        }
       ],
+      "venue": "CVPR 2026",
       "links": [
         {
-          "label": "Paper",
+          "label": "Paper (coming soon)",
           "url": "#"
         },
         {
-          "label": "Code",
+          "label": "Code (coming soon)",
           "url": "#"
+        }
+      ]
+    },
+    {
+      "title": "GraspVLA: a Grasping Foundation Model Pre-trained on Billion-scale Synthetic Action Data",
+      "authors": [
+        {
+          "name": "Shengliang Deng*",
+          "url": "https://miyandoris.github.io/"
+        },
+        {
+          "name": "Mi Yan*",
+          "url": "https://miyandoris.github.io/"
+        },
+        {
+          "name": "Songlin Wei"
+        },
+        {
+          "name": "Haixin Ma"
+        },
+        {
+          "name": "Yuxin Yang"
+        },
+        {
+          "name": "Jiayi Chen"
+        },
+        {
+          "name": "Zhiqi Zhang"
+        },
+        {
+          "name": "Taoyu Yang",
+          "highlight": true
+        },
+        {
+          "name": "Xuheng Zhang"
+        },
+        {
+          "name": "Heming Cui"
+        },
+        {
+          "name": "Zhizheng Zhang"
+        },
+        {
+          "name": "He Wang",
+          "url": "https://hughw19.github.io/"
+        }
+      ],
+      "venue": "CoRL 2025",
+      "links": [
+        {
+          "label": "Paper",
+          "url": "https://arxiv.org/pdf/2505.03233"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/PKU-EPIC/GraspVLA"
+        },
+        {
+          "label": "Project Page",
+          "url": "https://pku-epic.github.io/GraspVLA-web/"
         }
       ]
     }
