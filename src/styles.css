@@ -14,15 +14,6 @@
   --bg-image-dark: url("/assets/banner-dark.jpg");
   --sidebar-surface: rgba(0, 0, 0, 0.01);
   --sidebar-border: color-mix(in srgb, var(--border) 58%, transparent);
-  --ripple-x: 50vw;
-  --ripple-y: 50vh;
-  --ripple-radius: -64px;
-}
-
-@property --ripple-radius {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: -64px;
 }
 
 body.dark {
@@ -55,50 +46,23 @@ body {
   transition: color var(--theme-transition), background-color var(--theme-transition);
 }
 
-.background-photo-stage,
-.background-photo-stage::after,
-.background-veil,
-.background-veil::before,
-.background-veil::after {
+body::before,
+body::after {
+  content: "";
   position: fixed;
+  inset: 0;
   pointer-events: none;
+  z-index: -1;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.background-photo-stage {
-  inset: 0;
-  z-index: 0;
-  background-image: var(--bg-image-light);
-  background-color: var(--bg);
-}
-
-.background-photo-stage::after {
-  content: "";
-  inset: 0;
-  background-image: var(--bg-image-dark);
-  opacity: 0;
   transition: opacity var(--theme-transition);
-}
-
-.background-veil {
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-.background-veil::before,
-.background-veil::after {
-  content: "";
-  inset: -28px;
-  transform: scale(1.04);
+  filter: blur(10px) saturate(130%);
+  transform: scale(1.05);
   transform-origin: center;
-  transition: opacity var(--theme-transition);
 }
 
-.background-veil::before {
+body::before {
   background-image:
     linear-gradient(135deg, rgba(252, 252, 252, 0.91), rgba(252, 252, 252, 0.84)),
     var(--bg-image-light);
@@ -106,151 +70,19 @@ body {
   opacity: 1;
 }
 
-.background-veil::after {
+body::after {
   background-image:
     linear-gradient(135deg, rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.86)),
     var(--bg-image-dark);
-  filter: blur(10px) saturate(130%);
   opacity: 0;
 }
 
-body.dark .background-photo-stage::after,
-body.dark .background-veil::after {
+body.dark::before {
+  opacity: 0;
+}
+
+body.dark::after {
   opacity: 1;
-}
-
-body.dark .background-veil::before {
-  opacity: 0;
-}
-
-.page-foreground {
-  position: relative;
-  z-index: 2;
-}
-
-.background-veil,
-.page-foreground {
-  -webkit-mask-image: radial-gradient(
-    circle at var(--ripple-x) var(--ripple-y),
-    transparent 0,
-    transparent calc(var(--ripple-radius) - 28px),
-    rgba(0, 0, 0, 0.14) calc(var(--ripple-radius) - 12px),
-    rgba(0, 0, 0, 0.78) calc(var(--ripple-radius) + 20px),
-    #000 calc(var(--ripple-radius) + 64px)
-  );
-  mask-image: radial-gradient(
-    circle at var(--ripple-x) var(--ripple-y),
-    transparent 0,
-    transparent calc(var(--ripple-radius) - 28px),
-    rgba(0, 0, 0, 0.14) calc(var(--ripple-radius) - 12px),
-    rgba(0, 0, 0, 0.78) calc(var(--ripple-radius) + 20px),
-    #000 calc(var(--ripple-radius) + 64px)
-  );
-  transition: --ripple-radius 880ms cubic-bezier(0.66, 0, 0.22, 1);
-}
-
-body.photo-mode {
-  --ripple-radius: 160vmax;
-  overflow: hidden;
-}
-
-body.photo-mode .page-foreground {
-  pointer-events: none;
-  user-select: none;
-}
-
-.photo-viewer-controls {
-  position: fixed;
-  z-index: 5;
-  left: 50%;
-  bottom: max(22px, env(safe-area-inset-bottom));
-  width: min(92vw, 720px);
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, 12px);
-  transition:
-    opacity 260ms ease 520ms,
-    transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1) 520ms,
-    visibility 0s linear 880ms;
-  pointer-events: none;
-}
-
-.photo-viewer-controls.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, 0);
-  transition-delay: 560ms, 560ms, 0s;
-  pointer-events: auto;
-}
-
-.photo-viewer-toggle {
-  max-width: 100%;
-  padding: 0.66rem 0.9rem 0.58rem;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  border-radius: 14px;
-  background: rgba(8, 13, 22, 0.48);
-  color: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
-  -webkit-backdrop-filter: blur(12px) saturate(120%);
-  backdrop-filter: blur(12px) saturate(120%);
-  font: inherit;
-  font-size: 0.76rem;
-  line-height: 1.35;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
-}
-
-.photo-viewer-toggle:hover,
-.photo-viewer-toggle:focus-visible {
-  background: rgba(8, 13, 22, 0.66);
-  border-color: rgba(255, 255, 255, 0.58);
-  transform: translateY(-2px);
-}
-
-.photo-viewer-hint {
-  display: block;
-  margin-top: 0.12rem;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.67rem;
-}
-
-.photo-ripple {
-  position: fixed;
-  z-index: 4;
-  left: var(--ripple-x);
-  top: var(--ripple-y);
-  width: 180px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.1);
-  background: repeating-radial-gradient(
-    circle,
-    transparent 0 13px,
-    rgba(255, 255, 255, 0.42) 14px,
-    transparent 16px 28px
-  );
-  mix-blend-mode: soft-light;
-  filter: blur(0.4px);
-  animation: photo-ripple 900ms cubic-bezier(0.16, 0.72, 0.2, 1);
-}
-
-@keyframes photo-ripple {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.1);
-  }
-  16% {
-    opacity: 0.72;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(8);
-  }
 }
 
 .container {
@@ -874,26 +706,6 @@ body.dark .publication-venue {
   opacity: 0.9;
 }
 
-.footer-photo-toggle {
-  margin: 0;
-  padding: 0.12rem 0.22rem;
-  border: 0;
-  border-radius: 5px;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-  transition: color 180ms ease, background-color 180ms ease;
-}
-
-.footer-photo-toggle:hover,
-.footer-photo-toggle:focus-visible {
-  color: var(--accent-strong);
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(12px);
@@ -939,21 +751,5 @@ body.dark .publication-venue {
 
   .timed-date {
     white-space: normal;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .background-veil,
-  .page-foreground {
-    transition-duration: 180ms;
-  }
-
-  .photo-ripple {
-    display: none;
-  }
-
-  .photo-viewer-controls,
-  .photo-viewer-controls.visible {
-    transition-delay: 100ms, 100ms, 0s;
   }
 }
