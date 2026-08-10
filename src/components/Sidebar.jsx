@@ -4,6 +4,16 @@ import { getContactIconClass, getContactType, toPublicUrl } from '../utils/siteC
 function Sidebar({ profile, contact, sidebarMotionRef, onMouseMove, onMouseLeave }) {
   const [openWechatIndex, setOpenWechatIndex] = useState(null);
 
+  const avatarImages = Array.from(new Set(
+    (profile?.avatarImages?.length ? profile.avatarImages : [profile?.avatarImage])
+      .filter(Boolean)
+  ));
+  const [currentAvatar] = useState(() => (
+    avatarImages[Math.floor(Math.random() * avatarImages.length)]
+    || profile?.avatarImage
+    || 'assets/avatar-placeholder.svg'
+  ));
+
   useEffect(() => {
     if (openWechatIndex === null) return undefined;
 
@@ -49,8 +59,8 @@ function Sidebar({ profile, contact, sidebarMotionRef, onMouseMove, onMouseLeave
       <img
         id="avatar-image"
         className="avatar-image"
-        src={toPublicUrl(profile?.avatarImage || 'assets/avatar-placeholder.svg')}
-        alt="Avatar"
+        src={toPublicUrl(currentAvatar)}
+        alt={profile?.name ? `${profile.name} avatar` : 'Avatar'}
         onError={(event) => {
           event.currentTarget.src = toPublicUrl('assets/avatar-placeholder.svg');
         }}

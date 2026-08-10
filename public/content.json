@@ -3,7 +3,11 @@
     "name": "Taoyu Yang (杨涛瑜)",
     "title": "Undergraduate Student",
     "affiliation": "EECS, Peking University",
-    "avatarImage": "assets/profile.jpg"
+    "avatarImage": "assets/avatars/avatar-main.jpg",
+    "avatarImages": [
+      "assets/avatars/avatar-main.jpg",
+      "assets/avatars/avatar-sunset.jpg"
+    ]
   },
   "sections": {
     "about": true,
