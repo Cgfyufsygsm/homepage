@@ -6,6 +6,7 @@ function Topbar({
   activeId,
   onSectionClick,
   blog,
+  gallery,
   theme,
   onToggleTheme,
   topbarMouseRef,
@@ -45,6 +46,10 @@ function Topbar({
                   </li>
                 );
               })}
+
+              <li>
+                <a href="/gallery">{gallery?.label || 'Gallery'}</a>
+              </li>
 
               <li>
                 <a href={blog?.url || '#'} target="_blank" rel="noopener">{blog?.label || 'Blog'}</a>

@@ -1,0 +1,435 @@
+{
+  "version": 2,
+  "collections": [
+    {
+      "id": "mountains",
+      "label": "Mountains",
+      "order": 10
+    }
+  ],
+  "photos": [
+    {
+      "id": "2025-mianzimu-before-sunrise",
+      "alt": "Mianzimu Peak at blue hour beneath a deep blue sky",
+      "description": "The last blue minutes before the first light reached the ridge.",
+      "thumb": "assets/banner-dark.jpg",
+      "src": "assets/banner-dark.jpg",
+      "width": 3000,
+      "height": 1875,
+      "takenAt": "2025-11-01",
+      "location": "Deqen, Yunnan",
+      "collections": [
+        "mountains"
+      ],
+      "featured": false,
+      "order": 10,
+      "status": "published",
+      "exif": {
+        "camera": "",
+        "lens": "",
+        "focalLength": "",
+        "aperture": "",
+        "shutter": "",
+        "iso": null
+      },
+      "coordinates": null,
+      "updatedAt": "2026-08-17T14:23:08.976Z"
+    },
+    {
+      "id": "2025-mianzimu-first-light",
+      "alt": "The first warm sunlight falling across Mianzimu Peak",
+      "description": "Morning light moved slowly across the snow-covered range.",
+      "thumb": "assets/banner-light.jpg",
+      "src": "assets/banner-light.jpg",
+      "width": 2289,
+      "height": 1430,
+      "takenAt": "2025-11-01",
+      "location": "Deqen, Yunnan",
+      "collections": [
+        "mountains"
+      ],
+      "featured": false,
+      "order": 20,
+      "status": "published",
+      "exif": {
+        "camera": "",
+        "lens": "",
+        "focalLength": "",
+        "aperture": "",
+        "shutter": "",
+        "iso": null
+      },
+      "coordinates": null,
+      "updatedAt": "2026-08-17T14:23:21.044Z"
+    },
+    {
+      "id": "2026-img-2515",
+      "alt": "Golden forest with a winding stream",
+      "description": "Deep autumn in the Greater Khingan Range",
+      "takenAt": "2025-09-20",
+      "location": "Hulun Buir, Inner Mongolia",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 51.333317,
+        "longitude": 120.293159
+      },
+      "exif": {
+        "camera": "DJI FC9113",
+        "lens": "24.0 mm f/1.8",
+        "focalLength": "8.7 mm",
+        "aperture": "f/1.8",
+        "shutter": "1/500s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2025/2026-img-2515/thumb.webp",
+      "src": "assets/gallery/2025/2026-img-2515/full.webp",
+      "width": 2800,
+      "height": 1575,
+      "order": 30,
+      "createdAt": "2026-08-17T11:45:28.276Z",
+      "updatedAt": "2026-08-17T11:53:40.760Z"
+    },
+    {
+      "id": "2022-img-1889",
+      "alt": "Mountain village shrouded in clouds and mist",
+      "description": "After the rain, a mountain village in Gaopo Miao Township is enveloped in swirling clouds and mist.",
+      "takenAt": "2022-07-19",
+      "location": "Guiyang, Guizhou",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "24.0-70.0 mm",
+        "focalLength": "26.0 mm",
+        "aperture": "f/7.1",
+        "shutter": "1/200s",
+        "iso": 250
+      },
+      "thumb": "assets/gallery/2022/2022-img-1889/thumb.webp",
+      "src": "assets/gallery/2022/2022-img-1889/full.webp",
+      "width": 2800,
+      "height": 1643,
+      "order": 40,
+      "createdAt": "2026-08-17T12:41:22.371Z",
+      "updatedAt": "2026-08-17T12:41:22.371Z"
+    },
+    {
+      "id": "2024-img-1343",
+      "alt": "Aerial view of a turquoise lake reflecting blue sky and white clouds",
+      "description": "Overhead view of Bandir Blue Lake, its surface smooth as a mirror.",
+      "takenAt": "2024-08-22",
+      "location": "Taxkorgan, Xinjiang",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 37.833688,
+        "longitude": 75.421846
+      },
+      "exif": {
+        "camera": "DJI FC8282",
+        "lens": "24.0 mm f/1.7",
+        "focalLength": "6.7 mm",
+        "aperture": "f/1.7",
+        "shutter": "1/2500s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2024/2024-img-1343/thumb.webp",
+      "src": "assets/gallery/2024/2024-img-1343/full.webp",
+      "width": 2800,
+      "height": 1575,
+      "order": 50,
+      "createdAt": "2026-08-17T14:29:15.688Z",
+      "updatedAt": "2026-08-17T14:29:15.688Z"
+    },
+    {
+      "id": "2024-img-8549",
+      "alt": "Uyghur residence with Western Region charm",
+      "description": "Uyghur residence in Turpan, filled with the charm of the Western Regions.",
+      "takenAt": "2024-08-24",
+      "location": "Turpan, Xinjiang",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "24.0-70.0 mm",
+        "focalLength": "24.0 mm",
+        "aperture": "f/6.3",
+        "shutter": "1/100s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2024/2024-img-8549/thumb.webp",
+      "src": "assets/gallery/2024/2024-img-8549/full.webp",
+      "width": 2800,
+      "height": 1867,
+      "order": 60,
+      "createdAt": "2026-08-17T14:31:39.034Z",
+      "updatedAt": "2026-08-17T14:31:39.034Z"
+    },
+    {
+      "id": "2025-img-1913",
+      "alt": "Vehicle driving on a road across a frozen lake",
+      "description": "Frozen lake on the barren plain in March",
+      "takenAt": "2025-03-22",
+      "location": "Xilingol, Inner Mongolia",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 43.024909,
+        "longitude": 111.710674
+      },
+      "exif": {
+        "camera": "DJI FC9113",
+        "lens": "24.0 mm f/1.8",
+        "focalLength": "8.7 mm",
+        "aperture": "f/1.8",
+        "shutter": "1/2000s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2025/2025-img-1913/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-1913/full.webp",
+      "width": 2800,
+      "height": 1575,
+      "order": 70,
+      "createdAt": "2026-08-17T14:34:12.932Z",
+      "updatedAt": "2026-08-17T14:34:12.932Z"
+    },
+    {
+      "id": "2025-img-1947",
+      "alt": "Red-orange earth patterns",
+      "description": "Dahongshan, Dorbod Banner",
+      "takenAt": "2025-03-22",
+      "location": "Ulanqab, Inner Mongolia",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 43.017013,
+        "longitude": 111.602147
+      },
+      "exif": {
+        "camera": "DJI FC9113",
+        "lens": "24.0 mm f/1.8",
+        "focalLength": "8.7 mm",
+        "aperture": "f/1.8",
+        "shutter": "1/200s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2025/2025-img-1947/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-1947/full.webp",
+      "width": 2800,
+      "height": 1867,
+      "order": 80,
+      "createdAt": "2026-08-17T14:50:37.489Z",
+      "updatedAt": "2026-08-17T14:51:25.572Z"
+    },
+    {
+      "id": "2025-img-9925",
+      "alt": "Exquisite Buddhist sculptures in Xiaoxitian, Xi County",
+      "description": "Exquisite Buddhist sculptures in Xiaoxitian, Xi County",
+      "takenAt": "2025-05-04",
+      "location": "Linfen, Shanxi",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "EF70-200mm f/2.8L IS II USM",
+        "focalLength": "100.0 mm",
+        "aperture": "f/2.8",
+        "shutter": "1/100s",
+        "iso": 1600
+      },
+      "thumb": "assets/gallery/2025/2025-img-9925/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-9925/full.webp",
+      "width": 1867,
+      "height": 2800,
+      "order": 90,
+      "createdAt": "2026-08-17T14:53:52.739Z",
+      "updatedAt": "2026-08-17T14:53:52.739Z"
+    },
+    {
+      "id": "2025-img-0355",
+      "alt": "Distant snow-capped mountains and vast wilderness, accented by a Tibetan antelope",
+      "description": "A Tibetan antelope on the wilderness with majestic snow-capped mountains shrouded in clouds in the distance",
+      "takenAt": "2025-06-14",
+      "location": "Nagarzê, Tibet",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "EF70-200mm f/2.8L IS II USM",
+        "focalLength": "200.0 mm",
+        "aperture": "f/4.5",
+        "shutter": "1/500s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2025/2025-img-0355/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-0355/full.webp",
+      "width": 2800,
+      "height": 1575,
+      "order": 100,
+      "createdAt": "2026-08-17T15:01:24.412Z",
+      "updatedAt": "2026-08-17T15:01:24.412Z"
+    },
+    {
+      "id": "2025-img-1573",
+      "alt": "Autumn pasture in the Greater Khingan Range, haystacks and cattle and sheep on the hillside",
+      "description": "Autumn pasture in the Greater Khingan Range, haystacks and cattle and sheep on the hillside",
+      "takenAt": "2025-09-19",
+      "location": "Erguna, Inner Mongolia",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 50.352678,
+        "longitude": 120.310661
+      },
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "EF70-200mm f/2.8L IS II USM",
+        "focalLength": "70.0 mm",
+        "aperture": "f/7.1",
+        "shutter": "1/640s",
+        "iso": 400
+      },
+      "thumb": "assets/gallery/2025/2025-img-1573/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-1573/full.webp",
+      "width": 2800,
+      "height": 1575,
+      "order": 110,
+      "createdAt": "2026-08-17T15:14:54.267Z",
+      "updatedAt": "2026-08-17T15:14:54.267Z"
+    },
+    {
+      "id": "2025-img-2389",
+      "alt": "Dawn light on Kawa Karpo's golden peak",
+      "description": "Dawn light on Kawa Karpo's golden peak",
+      "takenAt": "2025-11-29",
+      "location": "Deqen, Yunnan",
+      "collections": [
+        "mountains"
+      ],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 28.445072,
+        "longitude": 98.874564
+      },
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "24.0-70.0 mm",
+        "focalLength": "45.0 mm",
+        "aperture": "f/7.1",
+        "shutter": "1/320s",
+        "iso": 400
+      },
+      "thumb": "assets/gallery/2025/2025-img-2389/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-2389/full.webp",
+      "width": 2800,
+      "height": 1867,
+      "order": 120,
+      "createdAt": "2026-08-17T15:17:30.481Z",
+      "updatedAt": "2026-08-17T15:19:15.536Z"
+    },
+    {
+      "id": "2025-img-2676",
+      "alt": "Morning mist envelops Ganden Sumtseling Monastery",
+      "description": "Morning mist envelops Ganden Sumtseling Monastery",
+      "takenAt": "2025-11-30",
+      "location": "Shangri-La, Yunnan",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 27.858294,
+        "longitude": 99.695725
+      },
+      "exif": {
+        "camera": "Olympus OM2",
+        "lens": "",
+        "focalLength": "",
+        "aperture": "",
+        "shutter": "",
+        "iso": null
+      },
+      "thumb": "assets/gallery/2025/2025-img-2676/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-2676/full.webp",
+      "width": 2800,
+      "height": 1863,
+      "order": 130,
+      "createdAt": "2026-08-17T15:23:08.746Z",
+      "updatedAt": "2026-08-17T15:23:08.746Z"
+    },
+    {
+      "id": "2025-img-2194",
+      "alt": "A canyon river pasture resembling a fairyland",
+      "description": "A canyon river pasture resembling a fairyland",
+      "takenAt": "2025-06-12",
+      "location": "Nyingchi, Tibet",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 29.999387,
+        "longitude": 94.209076
+      },
+      "exif": {
+        "camera": "DJI FC9184",
+        "lens": "70.0 mm f/2.8",
+        "focalLength": "19.4 mm",
+        "aperture": "f/2.8",
+        "shutter": "1/800s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2025/2025-img-2194/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-2194/full.webp",
+      "width": 2800,
+      "height": 1575,
+      "order": 140,
+      "createdAt": "2026-08-17T15:30:51.703Z",
+      "updatedAt": "2026-08-17T15:30:51.703Z"
+    },
+    {
+      "id": "2024-img-1422",
+      "alt": "Aerial view of Baisha Lake at sunset with Muztagh Ata in the distance",
+      "description": "An aerial view of Baisha Lake at sunset, with Muztagh Ata visible in the distance.",
+      "takenAt": "2024-08-23",
+      "location": "Kizilsu, Xinjiang",
+      "collections": [
+        "mountains"
+      ],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 38.689801,
+        "longitude": 74.957146
+      },
+      "exif": {
+        "camera": "DJI FC8282",
+        "lens": "24.0 mm f/1.7",
+        "focalLength": "6.7 mm",
+        "aperture": "f/1.7",
+        "shutter": "1/1250s",
+        "iso": 150
+      },
+      "thumb": "assets/gallery/2024/2024-img-1422/thumb.webp",
+      "src": "assets/gallery/2024/2024-img-1422/full.webp",
+      "width": 1867,
+      "height": 2800,
+      "order": 150,
+      "createdAt": "2026-08-17T15:35:33.896Z",
+      "updatedAt": "2026-08-17T15:35:33.896Z"
+    }
+  ]
+}

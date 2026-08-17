@@ -1,10 +1,15 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import MainContent from './components/MainContent';
+import GalleryPage from './components/GalleryPage';
 import Sidebar from './components/Sidebar';
 import SiteFooter from './components/SiteFooter';
 import Topbar from './components/Topbar';
 import { sectionOrder } from './constants/sections';
 import { getTopbarHeight } from './utils/siteContent';
+
+const GalleryAdminPage = import.meta.env.DEV
+  ? lazy(() => import('./components/GalleryAdminPage'))
+  : null;
 
 function App() {
   const [data, setData] = useState(null);
@@ -31,13 +36,25 @@ function App() {
 
     const run = async () => {
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}content.json`, { cache: 'no-store' });
+        const [res, galleryRes] = await Promise.all([
+          fetch(`${import.meta.env.BASE_URL}content.json`, { cache: 'no-store' }),
+          fetch(`${import.meta.env.BASE_URL}gallery.json`, { cache: 'no-store' }),
+        ]);
         if (!res.ok) {
           throw new Error('Failed to load content.json');
         }
 
         const json = await res.json();
-        if (!cancelled) setData(json);
+        const galleryManifest = galleryRes.ok ? await galleryRes.json() : {};
+        if (!cancelled) {
+          setData({
+            ...json,
+            gallery: {
+              ...(json.gallery || {}),
+              ...galleryManifest,
+            },
+          });
+        }
       } catch (err) {
         if (!cancelled) setError(String(err?.message || err));
       }
@@ -218,6 +235,28 @@ function App() {
     return <main className="container"><p>Loading...</p></main>;
   }
 
+  const pathname = window.location.pathname.replace(/\/+$/, '');
+
+  if (pathname === '/gallery-admin') {
+    return GalleryAdminPage
+      ? (
+        <Suspense fallback={<main className="container"><p>Loading Gallery Manager…</p></main>}>
+          <GalleryAdminPage data={data} />
+        </Suspense>
+      )
+      : <main className="container"><p>This page is available only in local development.</p></main>;
+  }
+
+  if (pathname === '/gallery') {
+    return (
+      <GalleryPage
+        data={data}
+        theme={theme}
+        onToggleTheme={() => setTheme((v) => (v === 'dark' ? 'light' : 'dark'))}
+      />
+    );
+  }
+
   return (
     <>
       <Topbar
@@ -226,6 +265,7 @@ function App() {
         activeId={activeId}
         onSectionClick={handleSectionClick}
         blog={data.blog}
+        gallery={data.gallery}
         theme={theme}
         onToggleTheme={() => setTheme((v) => (v === 'dark' ? 'light' : 'dark'))}
         topbarMouseRef={topbarMouseRef}

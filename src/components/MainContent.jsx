@@ -2,7 +2,7 @@ import { parseYear, splitParagraphs } from '../utils/siteContent';
 
 const renderInlineLinks = (text, keyPrefix) => {
   const value = String(text || '');
-  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+  const regex = /\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)]+)\)/g;
   const parts = [];
   let lastIndex = 0;
   let match;
@@ -16,8 +16,14 @@ const renderInlineLinks = (text, keyPrefix) => {
       parts.push(value.slice(lastIndex, start));
     }
 
+    const isExternal = /^https?:\/\//.test(url);
     parts.push(
-      <a key={`${keyPrefix}-link-${matchIndex}`} href={url} target="_blank" rel="noopener">
+      <a
+        key={`${keyPrefix}-link-${matchIndex}`}
+        href={url}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener' : undefined}
+      >
         {label}
       </a>
     );

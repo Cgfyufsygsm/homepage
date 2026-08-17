@@ -44,7 +44,7 @@
     "contactTitle": "Contact"
   },
   "about": {
-    "bio": "I'm Taoyu Yang, a junior undergraduate student at Peking University, majoring in Computer Science.\n\nI am currently a research intern with the [Xiaomi MiMo](https://mimo.xiaomi.com/) team, where I work on multimodal large models. My research interests broadly center on multimodal large language models, with a current focus on image and video generation."
+    "bio": "I'm Taoyu Yang, a junior undergraduate student at Peking University, majoring in Computer Science.\n\nI am currently a research intern with the [Xiaomi MiMo](https://mimo.xiaomi.com/) team, where I work on multimodal large models. My research interests broadly center on multimodal large language models, with a current focus on image and video generation.\n\nIn my spare time, I enjoy traveling and taking photographs. [Here](/gallery) are some of my selected works."
   },
   "education": [
     {
@@ -239,6 +239,12 @@
   "blog": {
     "label": "Blog",
     "url": "https://blog.imyangty.com"
+  },
+  "gallery": {
+    "label": "Gallery",
+    "period": "2025 — Present",
+    "intro": "A visual diary of mountain light, long journeys, and the quiet moments that ask to be remembered.",
+    "footer": "Photographs and words by Taoyu Yang."
   },
   "contact": [
     {
