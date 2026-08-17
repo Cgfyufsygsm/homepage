@@ -148,7 +148,13 @@ body.dark::after {
   cursor: pointer;
 }
 
-.topbar-liquid-core .glass {
+.topbar-liquid-core > .glass {
+  background: rgba(248, 249, 251, 0.64) !important;
+  box-shadow: none !important;
+}
+
+body.dark .topbar-liquid-core > .glass {
+  background: rgba(15, 17, 21, 0.68) !important;
   box-shadow: none !important;
 }
 

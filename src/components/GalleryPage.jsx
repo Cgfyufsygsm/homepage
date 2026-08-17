@@ -12,6 +12,8 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   const [isBrowsing, setIsBrowsing] = useState(false);
   const [previousPhoto, setPreviousPhoto] = useState(null);
   const [transitionPhotoKey, setTransitionPhotoKey] = useState(null);
+  const [isDetailImageReady, setIsDetailImageReady] = useState(false);
+  const [isOpenTransitionComplete, setIsOpenTransitionComplete] = useState(false);
   const [isInfoCollapsed, setIsInfoCollapsed] = useState(false);
   const headerMouseRef = useRef(null);
   const imagePreloadCache = useRef(new Map());
@@ -57,7 +59,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
     if (!value) return '';
     const date = new Date(`${value}T00:00:00`);
     if (Number.isNaN(date.getTime())) return value;
-    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   };
 
   const getCollectionLabel = (photo) => (
@@ -65,10 +67,11 @@ function GalleryPage({ data, theme, onToggleTheme }) {
     || 'Photography'
   );
 
-  const withViewTransition = (photoKey, update) => {
+  const withViewTransition = (photoKey, update, onFinished) => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!document.startViewTransition || reduceMotion) {
       update();
+      onFinished?.();
       return;
     }
 
@@ -76,7 +79,10 @@ function GalleryPage({ data, theme, onToggleTheme }) {
     const transition = document.startViewTransition(() => {
       flushSync(update);
     });
-    transition.finished.finally(() => setTransitionPhotoKey(null));
+    transition.finished.finally(() => {
+      setTransitionPhotoKey(null);
+      onFinished?.();
+    });
   };
 
   const preloadPhoto = (photo) => {
@@ -107,8 +113,13 @@ function GalleryPage({ data, theme, onToggleTheme }) {
     setNavigationDirection(1);
     setIsBrowsing(false);
     setPreviousPhoto(null);
+    setIsOpenTransitionComplete(false);
     setIsInfoCollapsed(false);
-    withViewTransition(String(index), () => setSelectedIndex(index));
+    withViewTransition(
+      String(index),
+      () => setSelectedIndex(index),
+      () => setIsOpenTransitionComplete(true)
+    );
   };
 
   const closePhoto = () => {
@@ -135,6 +146,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
     selectedPhoto.exif?.shutter,
     selectedPhoto.exif?.iso != null ? `ISO ${selectedPhoto.exif.iso}` : '',
   ].filter(Boolean).join(' · ') : '';
+  const revealDetailImage = isDetailImageReady && isOpenTransitionComplete;
 
   useEffect(() => {
     const previousTitle = document.title;
@@ -169,6 +181,23 @@ function GalleryPage({ data, theme, onToggleTheme }) {
       preloadPhoto(photo);
     });
   }, [visiblePhotos]);
+
+  useEffect(() => {
+    if (!selectedPhoto) {
+      setIsDetailImageReady(false);
+      return undefined;
+    }
+
+    let active = true;
+    setIsDetailImageReady(false);
+    preloadPhoto(selectedPhoto).then(() => {
+      if (active) setIsDetailImageReady(true);
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [selectedPhoto?.src]);
 
   return (
     <div className="gallery-page">
@@ -324,24 +353,53 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                   aria-hidden="true"
                 />
               ) : null}
-              <img
-                key={selectedPhoto.id || selectedPhoto.src}
-                className={isBrowsing ? (navigationDirection < 0 ? 'photo-enter-left' : 'photo-enter-right') : ''}
-                src={toPublicUrl(selectedPhoto.src)}
-                alt={selectedPhoto.alt || 'Photography work'}
-                onAnimationEnd={() => setPreviousPhoto(null)}
-                style={{
-                  viewTransitionName: transitionPhotoKey !== null
-                    ? 'gallery-active-photo'
-                    : 'none',
-                }}
-              />
+              {isBrowsing ? (
+                <img
+                  key={selectedPhoto.id || selectedPhoto.src}
+                  className={navigationDirection < 0 ? 'photo-enter-left' : 'photo-enter-right'}
+                  src={toPublicUrl(selectedPhoto.src)}
+                  alt={selectedPhoto.alt || 'Photography work'}
+                  onAnimationEnd={() => setPreviousPhoto(null)}
+                  style={{
+                    viewTransitionName: transitionPhotoKey !== null
+                      ? 'gallery-active-photo'
+                      : 'none',
+                  }}
+                />
+              ) : (
+                <>
+                  <img
+                    key={`preview-${selectedPhoto.id || selectedPhoto.src}`}
+                    className={`photo-detail-photo-preview${revealDetailImage ? ' is-replaced' : ''}`}
+                    src={toPublicUrl(selectedPhoto.thumb || selectedPhoto.src)}
+                    alt={selectedPhoto.alt || 'Photography work'}
+                    style={{
+                      viewTransitionName: transitionPhotoKey !== null && !revealDetailImage
+                        ? 'gallery-active-photo'
+                        : 'none',
+                    }}
+                  />
+                  <img
+                    key={`full-${selectedPhoto.id || selectedPhoto.src}`}
+                    className={`photo-detail-photo-full${revealDetailImage ? ' is-ready' : ''}`}
+                    src={toPublicUrl(selectedPhoto.src)}
+                    alt=""
+                    aria-hidden="true"
+                    style={{
+                      viewTransitionName: transitionPhotoKey !== null && revealDetailImage
+                        ? 'gallery-active-photo'
+                        : 'none',
+                    }}
+                  />
+                </>
+              )}
             </div>
             {visiblePhotos.length > 1 ? (
               <div className="photo-detail-navigation">
                 <button
                   type="button"
                   onClick={() => browsePhoto(-1)}
+                  onPointerUp={(event) => event.currentTarget.blur()}
                   aria-label="Previous photograph"
                 >
                   ←
@@ -349,6 +407,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                 <button
                   type="button"
                   onClick={() => browsePhoto(1)}
+                  onPointerUp={(event) => event.currentTarget.blur()}
                   aria-label="Next photograph"
                 >
                   →
@@ -365,10 +424,14 @@ function GalleryPage({ data, theme, onToggleTheme }) {
               className="photo-detail-collapse"
               type="button"
               onClick={() => setIsInfoCollapsed((value) => !value)}
+              onPointerUp={(event) => event.currentTarget.blur()}
               aria-expanded={!isInfoCollapsed}
               aria-label={isInfoCollapsed ? 'Show photograph information' : 'Hide photograph information'}
             >
-              <span aria-hidden="true">{isInfoCollapsed ? '‹' : '›'}</span>
+              <i
+                className={`fa-solid ${isInfoCollapsed ? 'fa-chevron-left' : 'fa-chevron-right'}`}
+                aria-hidden="true"
+              />
             </button>
             <div className="photo-detail-panel-content" aria-hidden={isInfoCollapsed}>
               <div className="photo-detail-card-heading">
