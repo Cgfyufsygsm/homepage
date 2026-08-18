@@ -5,6 +5,11 @@
       "id": "mountains",
       "label": "Mountains",
       "order": 10
+    },
+    {
+      "id": "stars",
+      "label": "Stars",
+      "order": 20
     }
   ],
   "photos": [
@@ -16,7 +21,7 @@
       "src": "assets/banner-dark.jpg",
       "width": 3000,
       "height": 1875,
-      "takenAt": "2025-11-01",
+      "takenAt": "2025-11-29",
       "location": "Deqen, Yunnan",
       "collections": [
         "mountains"
@@ -25,15 +30,18 @@
       "order": 10,
       "status": "published",
       "exif": {
-        "camera": "",
-        "lens": "",
-        "focalLength": "",
-        "aperture": "",
-        "shutter": "",
-        "iso": null
+        "camera": "Canon EOS RP",
+        "lens": "Sigma 24-70mm f/2.8 IF EX DG HSM or Tamron SP 24-70mm f/2.8 Di VC USD",
+        "focalLength": "58.0 mm",
+        "aperture": "f/2.8",
+        "shutter": "1/80s",
+        "iso": 3200
       },
-      "coordinates": null,
-      "updatedAt": "2026-08-17T14:23:08.976Z"
+      "coordinates": {
+        "latitude": 28.445075,
+        "longitude": 98.874572
+      },
+      "updatedAt": "2026-08-18T17:29:06.764Z"
     },
     {
       "id": "2025-mianzimu-first-light",
@@ -43,7 +51,7 @@
       "src": "assets/banner-light.jpg",
       "width": 2289,
       "height": 1430,
-      "takenAt": "2025-11-01",
+      "takenAt": "2025-11-29",
       "location": "Deqen, Yunnan",
       "collections": [
         "mountains"
@@ -52,15 +60,18 @@
       "order": 20,
       "status": "published",
       "exif": {
-        "camera": "",
+        "camera": "Olympus OM2",
         "lens": "",
         "focalLength": "",
         "aperture": "",
         "shutter": "",
         "iso": null
       },
-      "coordinates": null,
-      "updatedAt": "2026-08-17T14:23:21.044Z"
+      "coordinates": {
+        "latitude": 28.445075,
+        "longitude": 98.874572
+      },
+      "updatedAt": "2026-08-18T17:30:09.838Z"
     },
     {
       "id": "2026-img-2515",
@@ -430,6 +441,227 @@
       "order": 150,
       "createdAt": "2026-08-17T15:35:33.896Z",
       "updatedAt": "2026-08-17T15:35:33.896Z"
+    },
+    {
+      "id": "2026-img-3779",
+      "alt": "Golden sunset illuminating the Danxia landscape with towering snow-capped mountains behind",
+      "description": "Snow-capped mountain sunset beside Ami Dongso, viewed from the back of Zhuo'er Mountain outside Qilian County",
+      "takenAt": "2026-05-03",
+      "location": "Qilian, Qinghai",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 38.198925,
+        "longitude": 100.297097
+      },
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "EF70-200mm f/2.8L IS II USM",
+        "focalLength": "105.0 mm",
+        "aperture": "f/7.1",
+        "shutter": "1/160s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2026/2026-img-3779/thumb.webp",
+      "src": "assets/gallery/2026/2026-img-3779/full.webp",
+      "width": 2800,
+      "height": 1867,
+      "order": 160,
+      "createdAt": "2026-08-18T16:43:32.174Z",
+      "updatedAt": "2026-08-18T16:43:32.174Z"
+    },
+    {
+      "id": "2026-img-3518",
+      "alt": "Majestic snow-capped mountains shrouded in clouds and mist",
+      "description": "Mati Temple in Zhangye, Gansu. Snowed heavily even in May. The distant peaks were covered in white snow.",
+      "takenAt": "2026-05-02",
+      "location": "Zhangye, Gansu",
+      "collections": [
+        "mountains"
+      ],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 38.477661,
+        "longitude": 100.416817
+      },
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "EF70-200mm f/2.8L IS II USM",
+        "focalLength": "140.0 mm",
+        "aperture": "f/7.1",
+        "shutter": "1/1250s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2026/2026-img-3518/thumb.webp",
+      "src": "assets/gallery/2026/2026-img-3518/full.webp",
+      "width": 2800,
+      "height": 1867,
+      "order": 170,
+      "createdAt": "2026-08-18T16:48:56.917Z",
+      "updatedAt": "2026-08-18T16:49:26.841Z"
+    },
+    {
+      "id": "2024-250309000045420020",
+      "alt": "Peking University Boya Tower",
+      "description": "Boya Tower at Peking University under a blue sky, shot on 5294 reversal film.",
+      "takenAt": "2024-11-02",
+      "location": "Beijing",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "Olympus OM2",
+        "lens": "",
+        "focalLength": "",
+        "aperture": "",
+        "shutter": "",
+        "iso": null
+      },
+      "thumb": "assets/gallery/2024/2024-250309000045420020/thumb.webp",
+      "src": "assets/gallery/2024/2024-250309000045420020/full.webp",
+      "width": 1856,
+      "height": 2800,
+      "order": 180,
+      "createdAt": "2026-08-18T17:02:21.530Z",
+      "updatedAt": "2026-08-18T17:03:03.710Z"
+    },
+    {
+      "id": "2024-000133780028",
+      "alt": "Two silhouettes beneath a windmill at sunset",
+      "description": "On the grassland, beneath the windmill, the afterglow of the setting sun.",
+      "takenAt": "2024-08-27",
+      "location": "Guiyang, Guizhou",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "Olympus OM2",
+        "lens": "",
+        "focalLength": "",
+        "aperture": "",
+        "shutter": "",
+        "iso": null
+      },
+      "thumb": "assets/gallery/2024/2024-000133780028/thumb.webp",
+      "src": "assets/gallery/2024/2024-000133780028/full.webp",
+      "width": 2800,
+      "height": 1856,
+      "order": 190,
+      "createdAt": "2026-08-18T17:05:05.765Z",
+      "updatedAt": "2026-08-18T17:05:05.765Z"
+    },
+    {
+      "id": "2023-img-4255",
+      "alt": "Seventeen-Arch Bridge in the Summer Palace during snow",
+      "description": "The Summer Palace in the snow, as if stepping into an ink wash painting.",
+      "takenAt": "2023-12-13",
+      "location": "Beijing",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "EF70-200mm f/2.8L IS II USM",
+        "focalLength": "70.0 mm",
+        "aperture": "f/7.1",
+        "shutter": "1/80s",
+        "iso": 1000
+      },
+      "thumb": "assets/gallery/2023/2023-img-4255/thumb.webp",
+      "src": "assets/gallery/2023/2023-img-4255/full.webp",
+      "width": 2800,
+      "height": 1575,
+      "order": 200,
+      "createdAt": "2026-08-18T17:09:47.569Z",
+      "updatedAt": "2026-08-18T17:09:47.569Z"
+    },
+    {
+      "id": "2024-img-6371",
+      "alt": "Small fish in emerald water",
+      "description": "Panda Lake in Jiuzhaigou, with just the right light and shadow, emerald-clear lake water, small fish swimming, and submerged branches.",
+      "takenAt": "2024-07-18",
+      "location": "Jiuzhaigou, Sichuan",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "Canon EOS RP",
+        "lens": "24.0-70.0 mm",
+        "focalLength": "51.0 mm",
+        "aperture": "f/5.6",
+        "shutter": "1/60s",
+        "iso": 125
+      },
+      "thumb": "assets/gallery/2024/2024-img-6371/thumb.webp",
+      "src": "assets/gallery/2024/2024-img-6371/full.webp",
+      "width": 1867,
+      "height": 2800,
+      "order": 210,
+      "createdAt": "2026-08-18T17:13:46.528Z",
+      "updatedAt": "2026-08-18T17:13:46.528Z"
+    },
+    {
+      "id": "2024-img-1293",
+      "alt": "Aerial view of wetland pastures on the Pamir Plateau",
+      "description": "An aerial view of wetland pastures on the Pamir Plateau, with a texture like an oil painting.",
+      "takenAt": "2024-08-22",
+      "location": "Taxkorgan, Xinjiang",
+      "collections": [],
+      "featured": false,
+      "status": "published",
+      "coordinates": {
+        "latitude": 37.788894,
+        "longitude": 75.263243
+      },
+      "exif": {
+        "camera": "DJI FC8284",
+        "lens": "70.0 mm f/2.8",
+        "focalLength": "19.4 mm",
+        "aperture": "f/2.8",
+        "shutter": "1/350s",
+        "iso": 100
+      },
+      "thumb": "assets/gallery/2024/2024-img-1293/thumb.webp",
+      "src": "assets/gallery/2024/2024-img-1293/full.webp",
+      "width": 2800,
+      "height": 1575,
+      "order": 220,
+      "createdAt": "2026-08-18T17:16:11.282Z",
+      "updatedAt": "2026-08-18T17:16:11.282Z"
+    },
+    {
+      "id": "2025-img-1984-tif",
+      "alt": "Siziwang Banner, Dahongshan, starry sky",
+      "description": "With friends, under the starry sky of Dorbod Banner. Very immature post-processing of the starry sky photo.",
+      "takenAt": "2025-03-22",
+      "location": "Ulanqab, Inner Mongolia",
+      "collections": [
+        "stars"
+      ],
+      "featured": false,
+      "status": "published",
+      "coordinates": null,
+      "exif": {
+        "camera": "SONY ILCE-7M3",
+        "lens": "FE 20-70mm F4 G",
+        "focalLength": "20.0 mm",
+        "aperture": "f/4",
+        "shutter": "13s",
+        "iso": 12800
+      },
+      "thumb": "assets/gallery/2025/2025-img-1984-tif/thumb.webp",
+      "src": "assets/gallery/2025/2025-img-1984-tif/full.webp",
+      "width": 2800,
+      "height": 1867,
+      "order": 230,
+      "createdAt": "2026-08-18T17:32:16.538Z",
+      "updatedAt": "2026-08-18T17:33:55.260Z"
     }
   ]
 }
