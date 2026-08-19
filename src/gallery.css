@@ -815,6 +815,22 @@ body.dark .gallery-header-core > .glass {
   isolation: auto;
 }
 
+/* Keep the already-painted thumbnail visible for the whole zoom. The default
+   old/new cross-fade can expose an unpainted full-size image on slow networks. */
+::view-transition-old(gallery-active-photo),
+::view-transition-new(gallery-active-photo) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(gallery-active-photo) {
+  opacity: 1;
+}
+
+::view-transition-new(gallery-active-photo) {
+  opacity: 0;
+}
+
 @keyframes gallery-root-fade-in {
   from { opacity: 0; }
   to { opacity: 1; }

@@ -86,7 +86,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   };
 
   const preloadPhoto = (photo) => {
-    if (!photo?.src) return Promise.resolve();
+    if (!photo?.src) return Promise.resolve(false);
     const src = toPublicUrl(photo.src);
     if (imagePreloadCache.current.has(src)) return imagePreloadCache.current.get(src);
 
@@ -94,15 +94,15 @@ function GalleryPage({ data, theme, onToggleTheme }) {
       const image = new Image();
       const finish = () => {
         if (typeof image.decode === 'function') {
-          image.decode().catch(() => {}).finally(resolve);
+          image.decode().catch(() => {}).finally(() => resolve(true));
         } else {
-          resolve();
+          resolve(true);
         }
       };
       image.onload = finish;
-      image.onerror = resolve;
+      image.onerror = () => resolve(false);
       image.src = src;
-      if (image.complete) finish();
+      if (image.complete && image.naturalWidth > 0) finish();
     });
 
     imagePreloadCache.current.set(src, promise);
@@ -113,6 +113,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
     setNavigationDirection(1);
     setIsBrowsing(false);
     setPreviousPhoto(null);
+    setIsDetailImageReady(false);
     setIsOpenTransitionComplete(false);
     setIsInfoCollapsed(false);
     withViewTransition(
@@ -177,12 +178,6 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   }, [selectedPhoto, visiblePhotos.length]);
 
   useEffect(() => {
-    visiblePhotos.forEach((photo) => {
-      preloadPhoto(photo);
-    });
-  }, [visiblePhotos]);
-
-  useEffect(() => {
     if (!selectedPhoto) {
       setIsDetailImageReady(false);
       return undefined;
@@ -190,8 +185,8 @@ function GalleryPage({ data, theme, onToggleTheme }) {
 
     let active = true;
     setIsDetailImageReady(false);
-    preloadPhoto(selectedPhoto).then(() => {
-      if (active) setIsDetailImageReady(true);
+    preloadPhoto(selectedPhoto).then((loaded) => {
+      if (active && loaded) setIsDetailImageReady(true);
     });
 
     return () => {
@@ -277,6 +272,9 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                     <button
                       type="button"
                       onClick={() => openPhoto(photoIndex)}
+                      onPointerEnter={() => preloadPhoto(photo)}
+                      onPointerDown={() => preloadPhoto(photo)}
+                      onFocus={() => preloadPhoto(photo)}
                       aria-label={`View photograph ${photoIndex + 1}`}
                     >
                       <span
