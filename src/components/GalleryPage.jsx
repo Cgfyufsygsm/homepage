@@ -20,6 +20,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   const headerMouseRef = useRef(null);
   const imagePreloadCache = useRef(new Map());
   const browseRequestRef = useRef(0);
+  const browseTargetIndexRef = useRef(null);
 
   const collections = useMemo(() => [
     { id: 'all', label: 'All' },
@@ -115,6 +116,8 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   const preloadThumbnail = (photo) => preloadImage(photo?.thumb || photo?.src);
 
   const openPhoto = (index) => {
+    browseRequestRef.current += 1;
+    browseTargetIndexRef.current = index;
     setNavigationDirection(1);
     setIsBrowsing(false);
     setIsBrowsePending(false);
@@ -132,22 +135,28 @@ function GalleryPage({ data, theme, onToggleTheme }) {
 
   const closePhoto = () => {
     browseRequestRef.current += 1;
+    browseTargetIndexRef.current = null;
     setIsBrowsePending(false);
     withViewTransition(String(selectedIndex), () => setSelectedIndex(null));
   };
 
   const browsePhoto = async (direction) => {
-    if (isBrowsePending || isBrowsing) return;
-
-    const nextIndex = (selectedIndex + direction + visiblePhotos.length) % visiblePhotos.length;
+    const baseIndex = browseTargetIndexRef.current ?? selectedIndex;
+    const nextIndex = (baseIndex + direction + visiblePhotos.length) % visiblePhotos.length;
     const nextPhoto = visiblePhotos[nextIndex];
     const requestId = browseRequestRef.current + 1;
     browseRequestRef.current = requestId;
+    browseTargetIndexRef.current = nextIndex;
     setIsBrowsePending(true);
 
     const previewLoaded = await preloadThumbnail(nextPhoto);
     if (browseRequestRef.current !== requestId) return;
     if (!previewLoaded) {
+      browseTargetIndexRef.current = selectedIndex;
+      setIsBrowsePending(false);
+      return;
+    }
+    if (nextIndex === selectedIndex) {
       setIsBrowsePending(false);
       return;
     }
@@ -195,8 +204,14 @@ function GalleryPage({ data, theme, onToggleTheme }) {
     document.body.classList.add('gallery-lightbox-open');
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') closePhoto();
-      if (event.key === 'ArrowRight') browsePhoto(1);
-      if (event.key === 'ArrowLeft') browsePhoto(-1);
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        browsePhoto(1);
+      }
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        browsePhoto(-1);
+      }
     };
 
     document.addEventListener('keydown', handleKeyDown);
@@ -379,6 +394,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
             <div className="photo-detail-media">
               {isBrowsing && previousPhoto ? (
                 <img
+                  key={`previous-${previousPhoto.id || previousPhoto.src}`}
                   className="photo-detail-photo-previous"
                   src={toPublicUrl(previousPhotoSource || previousPhoto.thumb || previousPhoto.src)}
                   alt=""
@@ -425,7 +441,6 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                   onClick={() => browsePhoto(-1)}
                   onPointerUp={(event) => event.currentTarget.blur()}
                   aria-label="Previous photograph"
-                  disabled={isBrowsePending || isBrowsing}
                 >
                   ←
                 </button>
@@ -434,7 +449,6 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                   onClick={() => browsePhoto(1)}
                   onPointerUp={(event) => event.currentTarget.blur()}
                   aria-label="Next photograph"
-                  disabled={isBrowsePending || isBrowsing}
                 >
                   →
                 </button>

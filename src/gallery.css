@@ -780,12 +780,6 @@ body.dark .gallery-header-core > .glass {
   transform: translateY(-2px);
 }
 
-.photo-detail-navigation button:disabled {
-  opacity: 0.46;
-  cursor: wait;
-  transform: none;
-}
-
 .photo-detail-navigation button:focus-visible,
 .photo-detail-collapse:focus-visible,
 .photo-detail-close:focus-visible {
