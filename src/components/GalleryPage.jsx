@@ -81,7 +81,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
     });
     transition.finished.finally(() => {
       setTransitionPhotoKey(null);
-      onFinished?.();
+      if (onFinished) requestAnimationFrame(onFinished);
     });
   };
 

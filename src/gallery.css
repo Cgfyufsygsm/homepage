@@ -815,25 +815,34 @@ body.dark .gallery-header-core > .glass {
   isolation: auto;
 }
 
-/* Keep the already-painted thumbnail visible for the whole zoom. The default
-   old/new cross-fade can expose an unpainted full-size image on slow networks. */
 ::view-transition-old(gallery-active-photo),
 ::view-transition-new(gallery-active-photo) {
-  animation: none;
   mix-blend-mode: normal;
+  object-fit: cover;
+  object-position: center;
 }
 
 ::view-transition-old(gallery-active-photo) {
-  opacity: 1;
+  animation: gallery-active-photo-old 620ms ease both;
 }
 
 ::view-transition-new(gallery-active-photo) {
-  opacity: 0;
+  animation: gallery-active-photo-new 620ms ease both;
 }
 
 @keyframes gallery-root-fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes gallery-active-photo-old {
+  0%, 16% { opacity: 1; }
+  68%, 100% { opacity: 0; }
+}
+
+@keyframes gallery-active-photo-new {
+  0% { opacity: 0; }
+  58%, 100% { opacity: 1; }
 }
 
 @keyframes gallery-backdrop-in {
