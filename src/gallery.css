@@ -474,7 +474,7 @@ body.dark .gallery-header-core > .glass {
 .photo-detail-media > img.photo-detail-photo-preview {
   z-index: 2;
   opacity: 1;
-  transition: opacity 0ms linear 340ms;
+  transition: opacity 0ms linear 400ms;
 }
 
 .photo-detail-media > img.photo-detail-photo-preview.is-replaced {
@@ -484,7 +484,7 @@ body.dark .gallery-header-core > .glass {
 .photo-detail-media > img.photo-detail-photo-full {
   z-index: 3;
   opacity: 0;
-  transition: opacity 320ms ease;
+  transition: opacity 380ms ease;
 }
 
 .photo-detail-media > img.photo-detail-photo-full.is-ready {
@@ -496,25 +496,16 @@ body.dark .gallery-header-core > .glass {
   z-index: 2;
 }
 
-.photo-detail-media > img.photo-exit-left,
-.photo-detail-media > img.photo-exit-right {
+.photo-detail-media > img.photo-detail-photo-previous {
   z-index: 1;
 }
 
 .photo-detail-media > img.photo-enter-right {
-  animation: gallery-photo-enter-right 300ms ease both;
+  animation: gallery-photo-enter-right 360ms ease both;
 }
 
 .photo-detail-media > img.photo-enter-left {
-  animation: gallery-photo-enter-left 300ms ease both;
-}
-
-.photo-detail-media > img.photo-exit-left {
-  animation: gallery-photo-exit-left 300ms ease both;
-}
-
-.photo-detail-media > img.photo-exit-right {
-  animation: gallery-photo-exit-right 300ms ease both;
+  animation: gallery-photo-enter-left 360ms ease both;
 }
 
 .photo-detail-topline {
@@ -888,16 +879,6 @@ body.dark .gallery-header-core > .glass {
 @keyframes gallery-photo-enter-left {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes gallery-photo-exit-left {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-@keyframes gallery-photo-exit-right {
-  from { opacity: 1; }
-  to { opacity: 0; }
 }
 
 @media (max-width: 720px) {
