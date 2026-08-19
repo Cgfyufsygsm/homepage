@@ -339,6 +339,7 @@ body.dark .gallery-header-core > .glass {
 
 .photo-detail {
   --photo-drawer-width: clamp(320px, 28vw, 390px);
+  --photo-media-max-height: calc(100vh - clamp(8rem, 14vh, 10rem));
   --photo-shade-notch: polygon(
     0 0,
     100% 0,
@@ -388,11 +389,6 @@ body.dark .gallery-header-core > .glass {
 
 .photo-detail-background-current {
   animation: gallery-background-in 620ms ease both;
-}
-
-.photo-detail-background-enter {
-  z-index: 2;
-  animation: gallery-background-enter 300ms ease both;
 }
 
 .photo-detail-background-exit {
@@ -460,12 +456,13 @@ body.dark .gallery-header-core > .glass {
   height: 100%;
   display: grid;
   place-items: center;
+  isolation: isolate;
 }
 
 .photo-detail-media > img {
   grid-area: 1 / 1;
   max-width: 100%;
-  max-height: calc(100vh - clamp(8rem, 14vh, 10rem));
+  max-height: var(--photo-media-max-height);
   display: block;
   object-fit: contain;
   pointer-events: auto;
@@ -474,17 +471,12 @@ body.dark .gallery-header-core > .glass {
 .photo-detail-media > img.photo-detail-photo-preview {
   z-index: 2;
   opacity: 1;
-  transition: opacity 0ms linear 400ms;
-}
-
-.photo-detail-media > img.photo-detail-photo-preview.is-replaced {
-  opacity: 0;
 }
 
 .photo-detail-media > img.photo-detail-photo-full {
   z-index: 3;
   opacity: 0;
-  transition: opacity 380ms ease;
+  transition: opacity 360ms ease;
 }
 
 .photo-detail-media > img.photo-detail-photo-full.is-ready {
@@ -498,14 +490,25 @@ body.dark .gallery-header-core > .glass {
 
 .photo-detail-media > img.photo-detail-photo-previous {
   z-index: 1;
+  animation: gallery-photo-previous-out 420ms ease both;
+}
+
+.photo-detail-media > img.photo-detail-photo-previous,
+.photo-detail-media > img.photo-enter-right,
+.photo-detail-media > img.photo-enter-left {
+  width: 100%;
+  height: var(--photo-media-max-height);
+  max-width: 100%;
+  max-height: var(--photo-media-max-height);
+  object-fit: contain;
 }
 
 .photo-detail-media > img.photo-enter-right {
-  animation: gallery-photo-enter-right 360ms ease both;
+  animation: gallery-photo-enter-right 420ms ease both;
 }
 
 .photo-detail-media > img.photo-enter-left {
-  animation: gallery-photo-enter-left 360ms ease both;
+  animation: gallery-photo-enter-left 420ms ease both;
 }
 
 .photo-detail-topline {
@@ -777,6 +780,12 @@ body.dark .gallery-header-core > .glass {
   transform: translateY(-2px);
 }
 
+.photo-detail-navigation button:disabled {
+  opacity: 0.46;
+  cursor: wait;
+  transform: none;
+}
+
 .photo-detail-navigation button:focus-visible,
 .photo-detail-collapse:focus-visible,
 .photo-detail-close:focus-visible {
@@ -851,11 +860,6 @@ body.dark .gallery-header-core > .glass {
   to { opacity: 1; }
 }
 
-@keyframes gallery-background-enter {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 @keyframes gallery-background-exit {
   from { opacity: 1; }
   to { opacity: 0; }
@@ -872,13 +876,18 @@ body.dark .gallery-header-core > .glass {
 }
 
 @keyframes gallery-photo-enter-right {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  0%, 22% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes gallery-photo-enter-left {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  0%, 22% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes gallery-photo-previous-out {
+  0% { opacity: 1; }
+  58%, 100% { opacity: 0; }
 }
 
 @media (max-width: 720px) {
@@ -922,6 +931,7 @@ body.dark .gallery-header-core > .glass {
 
   .photo-detail {
     --photo-drawer-width: min(82vw, 330px);
+    --photo-media-max-height: calc(100vh - 10rem);
   }
 
   .photo-detail-stage {
@@ -934,10 +944,6 @@ body.dark .gallery-header-core > .glass {
 
   .photo-detail.info-collapsed .photo-detail-stage {
     padding-right: 2.75rem;
-  }
-
-  .photo-detail-media > img {
-    max-height: calc(100vh - 10rem);
   }
 
   .photo-detail-topline {
@@ -993,7 +999,6 @@ body.dark .gallery-header-core > .glass {
     animation: none;
   }
 
-  .photo-detail-media > img.photo-detail-photo-preview,
   .photo-detail-media > img.photo-detail-photo-full {
     transition: none;
   }

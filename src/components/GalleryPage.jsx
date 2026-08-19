@@ -10,7 +10,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [navigationDirection, setNavigationDirection] = useState(1);
   const [isBrowsing, setIsBrowsing] = useState(false);
-  const [isBrowseTransitionComplete, setIsBrowseTransitionComplete] = useState(true);
+  const [isBrowsePending, setIsBrowsePending] = useState(false);
   const [previousPhoto, setPreviousPhoto] = useState(null);
   const [previousPhotoSource, setPreviousPhotoSource] = useState(null);
   const [transitionPhotoKey, setTransitionPhotoKey] = useState(null);
@@ -19,6 +19,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   const [isInfoCollapsed, setIsInfoCollapsed] = useState(false);
   const headerMouseRef = useRef(null);
   const imagePreloadCache = useRef(new Map());
+  const browseRequestRef = useRef(0);
 
   const collections = useMemo(() => [
     { id: 'all', label: 'All' },
@@ -116,7 +117,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   const openPhoto = (index) => {
     setNavigationDirection(1);
     setIsBrowsing(false);
-    setIsBrowseTransitionComplete(true);
+    setIsBrowsePending(false);
     setPreviousPhoto(null);
     setPreviousPhotoSource(null);
     setIsDetailImageReady(false);
@@ -130,18 +131,32 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   };
 
   const closePhoto = () => {
+    browseRequestRef.current += 1;
+    setIsBrowsePending(false);
     withViewTransition(String(selectedIndex), () => setSelectedIndex(null));
   };
 
-  const browsePhoto = (direction) => {
+  const browsePhoto = async (direction) => {
+    if (isBrowsePending || isBrowsing) return;
+
     const nextIndex = (selectedIndex + direction + visiblePhotos.length) % visiblePhotos.length;
     const nextPhoto = visiblePhotos[nextIndex];
+    const requestId = browseRequestRef.current + 1;
+    browseRequestRef.current = requestId;
+    setIsBrowsePending(true);
+
+    const previewLoaded = await preloadThumbnail(nextPhoto);
+    if (browseRequestRef.current !== requestId) return;
+    if (!previewLoaded) {
+      setIsBrowsePending(false);
+      return;
+    }
+
     const shouldAnimate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    preloadThumbnail(nextPhoto);
 
     setNavigationDirection(direction);
-    setIsBrowsing(true);
-    setIsBrowseTransitionComplete(!shouldAnimate);
+    setIsBrowsing(shouldAnimate);
+    setIsBrowsePending(false);
     setIsDetailImageReady(false);
     setPreviousPhoto(shouldAnimate ? selectedPhoto : null);
     setPreviousPhotoSource(
@@ -161,7 +176,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
   ].filter(Boolean).join(' · ') : '';
   const revealDetailImage = isDetailImageReady
     && isOpenTransitionComplete
-    && (!isBrowsing || isBrowseTransitionComplete);
+    && !isBrowsing;
 
   useEffect(() => {
     const previousTitle = document.title;
@@ -336,15 +351,16 @@ function GalleryPage({ data, theme, onToggleTheme }) {
           aria-label={`Photograph ${selectedIndex + 1}`}
         >
           <div className="photo-detail-background" aria-hidden="true">
-            {isBrowsing && previousPhoto ? (
+            {previousPhoto ? (
               <div
+                key={`background-exit-${previousPhoto.id || previousPhoto.src}`}
                 className="photo-detail-background-exit"
                 style={{ backgroundImage: `url("${toPublicUrl(previousPhoto.thumb || previousPhoto.src)}")` }}
               />
             ) : null}
             <div
-              key={selectedPhoto.id || selectedPhoto.src}
-              className={isBrowsing ? 'photo-detail-background-enter' : 'photo-detail-background-current'}
+              key={`background-current-${selectedPhoto.id || selectedPhoto.src}`}
+              className="photo-detail-background-current"
               style={{ backgroundImage: `url("${toPublicUrl(selectedPhoto.thumb || selectedPhoto.src)}")` }}
             />
           </div>
@@ -367,22 +383,22 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                   src={toPublicUrl(previousPhotoSource || previousPhoto.thumb || previousPhoto.src)}
                   alt=""
                   aria-hidden="true"
+                  onAnimationEnd={() => {
+                    setPreviousPhoto(null);
+                    setPreviousPhotoSource(null);
+                    setIsBrowsing(false);
+                  }}
                 />
               ) : null}
               <img
                 key={`preview-${selectedPhoto.id || selectedPhoto.src}`}
                 className={`photo-detail-photo-preview${
-                  isBrowsing && !isBrowseTransitionComplete
+                  isBrowsing
                     ? ` ${navigationDirection < 0 ? 'photo-enter-left' : 'photo-enter-right'}`
                     : ''
-                }${revealDetailImage ? ' is-replaced' : ''}`}
+                }`}
                 src={toPublicUrl(selectedPhoto.thumb || selectedPhoto.src)}
                 alt={selectedPhoto.alt || 'Photography work'}
-                onAnimationEnd={() => {
-                  setPreviousPhoto(null);
-                  setPreviousPhotoSource(null);
-                  setIsBrowseTransitionComplete(true);
-                }}
                 style={{
                   viewTransitionName: transitionPhotoKey !== null && !revealDetailImage
                     ? 'gallery-active-photo'
@@ -403,12 +419,13 @@ function GalleryPage({ data, theme, onToggleTheme }) {
               />
             </div>
             {visiblePhotos.length > 1 ? (
-              <div className="photo-detail-navigation">
+              <div className="photo-detail-navigation" aria-busy={isBrowsePending}>
                 <button
                   type="button"
                   onClick={() => browsePhoto(-1)}
                   onPointerUp={(event) => event.currentTarget.blur()}
                   aria-label="Previous photograph"
+                  disabled={isBrowsePending || isBrowsing}
                 >
                   ←
                 </button>
@@ -417,6 +434,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                   onClick={() => browsePhoto(1)}
                   onPointerUp={(event) => event.currentTarget.blur()}
                   aria-label="Next photograph"
+                  disabled={isBrowsePending || isBrowsing}
                 >
                   →
                 </button>
