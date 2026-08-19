@@ -393,46 +393,56 @@ function GalleryPage({ data, theme, onToggleTheme }) {
           <div className="photo-detail-stage">
             <div className="photo-detail-media">
               {isBrowsing && previousPhoto ? (
-                <img
+                <div
                   key={`previous-${previousPhoto.id || previousPhoto.src}`}
-                  className="photo-detail-photo-previous"
-                  src={toPublicUrl(previousPhotoSource || previousPhoto.thumb || previousPhoto.src)}
-                  alt=""
+                  className="photo-detail-image-layer photo-detail-photo-previous"
                   aria-hidden="true"
-                  onAnimationEnd={() => {
+                  onAnimationEnd={(event) => {
+                    if (event.target !== event.currentTarget) return;
                     setPreviousPhoto(null);
                     setPreviousPhotoSource(null);
                     setIsBrowsing(false);
                   }}
-                />
+                >
+                  <img
+                    src={toPublicUrl(previousPhotoSource || previousPhoto.thumb || previousPhoto.src)}
+                    alt=""
+                  />
+                </div>
               ) : null}
-              <img
+              <div
                 key={`preview-${selectedPhoto.id || selectedPhoto.src}`}
-                className={`photo-detail-photo-preview${
+                className={`photo-detail-image-layer photo-detail-photo-preview${
                   isBrowsing
                     ? ` ${navigationDirection < 0 ? 'photo-enter-left' : 'photo-enter-right'}`
                     : ''
                 }`}
-                src={toPublicUrl(selectedPhoto.thumb || selectedPhoto.src)}
-                alt={selectedPhoto.alt || 'Photography work'}
-                style={{
-                  viewTransitionName: transitionPhotoKey !== null && !revealDetailImage
-                    ? 'gallery-active-photo'
-                    : 'none',
-                }}
-              />
-              <img
+              >
+                <img
+                  src={toPublicUrl(selectedPhoto.thumb || selectedPhoto.src)}
+                  alt={selectedPhoto.alt || 'Photography work'}
+                  style={{
+                    viewTransitionName: transitionPhotoKey !== null && !revealDetailImage
+                      ? 'gallery-active-photo'
+                      : 'none',
+                  }}
+                />
+              </div>
+              <div
                 key={`full-${selectedPhoto.id || selectedPhoto.src}`}
-                className={`photo-detail-photo-full${revealDetailImage ? ' is-ready' : ''}`}
-                src={toPublicUrl(selectedPhoto.src)}
-                alt=""
+                className={`photo-detail-image-layer photo-detail-photo-full${revealDetailImage ? ' is-ready' : ''}`}
                 aria-hidden="true"
-                style={{
-                  viewTransitionName: transitionPhotoKey !== null && revealDetailImage
-                    ? 'gallery-active-photo'
-                    : 'none',
-                }}
-              />
+              >
+                <img
+                  src={toPublicUrl(selectedPhoto.src)}
+                  alt=""
+                  style={{
+                    viewTransitionName: transitionPhotoKey !== null && revealDetailImage
+                      ? 'gallery-active-photo'
+                      : 'none',
+                  }}
+                />
+              </div>
             </div>
             {visiblePhotos.length > 1 ? (
               <div className="photo-detail-navigation" aria-busy={isBrowsePending}>

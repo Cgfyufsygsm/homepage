@@ -459,8 +459,15 @@ body.dark .gallery-header-core > .glass {
   isolation: isolate;
 }
 
-.photo-detail-media > img {
+.photo-detail-image-layer {
   grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.photo-detail-image-layer > img {
   max-width: 100%;
   max-height: var(--photo-media-max-height);
   display: block;
@@ -468,46 +475,36 @@ body.dark .gallery-header-core > .glass {
   pointer-events: auto;
 }
 
-.photo-detail-media > img.photo-detail-photo-preview {
+.photo-detail-photo-preview {
   z-index: 2;
   opacity: 1;
 }
 
-.photo-detail-media > img.photo-detail-photo-full {
+.photo-detail-photo-full {
   z-index: 3;
   opacity: 0;
   transition: opacity 360ms ease;
 }
 
-.photo-detail-media > img.photo-detail-photo-full.is-ready {
+.photo-detail-photo-full.is-ready {
   opacity: 1;
 }
 
-.photo-detail-media > img.photo-enter-right,
-.photo-detail-media > img.photo-enter-left {
+.photo-detail-photo-preview.photo-enter-right,
+.photo-detail-photo-preview.photo-enter-left {
   z-index: 2;
 }
 
-.photo-detail-media > img.photo-detail-photo-previous {
+.photo-detail-photo-previous {
   z-index: 1;
   animation: gallery-photo-previous-out 420ms ease both;
 }
 
-.photo-detail-media > img.photo-detail-photo-previous,
-.photo-detail-media > img.photo-enter-right,
-.photo-detail-media > img.photo-enter-left {
-  width: 100%;
-  height: var(--photo-media-max-height);
-  max-width: 100%;
-  max-height: var(--photo-media-max-height);
-  object-fit: contain;
-}
-
-.photo-detail-media > img.photo-enter-right {
+.photo-detail-photo-preview.photo-enter-right {
   animation: gallery-photo-enter-right 420ms ease both;
 }
 
-.photo-detail-media > img.photo-enter-left {
+.photo-detail-photo-preview.photo-enter-left {
   animation: gallery-photo-enter-left 420ms ease both;
 }
 
@@ -985,7 +982,7 @@ body.dark .gallery-header-core > .glass {
   .photo-detail-backdrop,
   .photo-detail-shade,
   .photo-detail-background > div,
-  .photo-detail-media > img,
+  .photo-detail-image-layer,
   .photo-detail-topline,
   .photo-detail-close,
   .photo-detail-panel,
@@ -993,7 +990,7 @@ body.dark .gallery-header-core > .glass {
     animation: none;
   }
 
-  .photo-detail-media > img.photo-detail-photo-full {
+  .photo-detail-photo-full {
     transition: none;
   }
 
