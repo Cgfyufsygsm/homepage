@@ -3,6 +3,13 @@ import { flushSync } from 'react-dom';
 import LiquidGlass from 'liquid-glass-react';
 import { toPublicUrl } from '../utils/siteContent';
 
+const getPhotoImageStyle = (photo) => ({
+  '--photo-image-width': photo.width > 0 ? `${photo.width}px` : '100%',
+  '--photo-image-aspect-ratio': photo.width > 0 && photo.height > 0
+    ? photo.width / photo.height
+    : 4 / 3,
+});
+
 function GalleryPage({ data, theme, onToggleTheme }) {
   const gallery = data.gallery || {};
   const photos = gallery.photos || [];
@@ -407,6 +414,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                   <img
                     src={toPublicUrl(previousPhotoSource || previousPhoto.thumb || previousPhoto.src)}
                     alt=""
+                    style={getPhotoImageStyle(previousPhoto)}
                   />
                 </div>
               ) : null}
@@ -422,6 +430,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                   src={toPublicUrl(selectedPhoto.thumb || selectedPhoto.src)}
                   alt={selectedPhoto.alt || 'Photography work'}
                   style={{
+                    ...getPhotoImageStyle(selectedPhoto),
                     viewTransitionName: transitionPhotoKey !== null && !revealDetailImage
                       ? 'gallery-active-photo'
                       : 'none',
@@ -437,6 +446,7 @@ function GalleryPage({ data, theme, onToggleTheme }) {
                   src={toPublicUrl(selectedPhoto.src)}
                   alt=""
                   style={{
+                    ...getPhotoImageStyle(selectedPhoto),
                     viewTransitionName: transitionPhotoKey !== null && revealDetailImage
                       ? 'gallery-active-photo'
                       : 'none',

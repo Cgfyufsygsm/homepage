@@ -468,6 +468,10 @@ body.dark .gallery-header-core > .glass {
 }
 
 .photo-detail-image-layer > img {
+  /* Preview and full image share a frame before either resource finishes loading. */
+  width: min(100%, var(--photo-image-width), calc(var(--photo-media-max-height) * var(--photo-image-aspect-ratio)));
+  height: auto;
+  aspect-ratio: var(--photo-image-aspect-ratio);
   max-width: 100%;
   max-height: var(--photo-media-max-height);
   display: block;
